@@ -19,7 +19,7 @@
        <input type="text" name="name" placeholder="Nombre" onChange={handleChange} required />
        <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
        <input type="password" name="password" placeholder="Contraseña" onChange={handleChange} required />
-       <button type="submit">Registrar</button>
+       <button type="submit">Sign Up</button>
      </form>
    );
  }
