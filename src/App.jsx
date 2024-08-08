@@ -3,31 +3,34 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext.jsx'
+import SignUp from './pages/SignUp.jsx'
+import SignUpT from './pages/traveler/SignUpT.jsx'
+import Login from './pages/Login.jsx'
+import LoginT from './pages/traveler/LoginT.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import DashboardT from './pages/traveler/DashboardT.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            } />
+          </Routes>
+        </Router>
+      </AuthProvider>
     </>
   )
 }
