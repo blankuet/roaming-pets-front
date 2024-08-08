@@ -18,7 +18,7 @@ function Login() {
     <form onSubmit={handleSubmit}>
       <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
       <input type="password" name="password" placeholder="Contraseña" onChange={handleChange} required />
-      <button type="submit">Iniciar Sesión</button>
+      <button type="submit">Login</button>
     </form>
   );
 }
