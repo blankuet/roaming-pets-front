@@ -30,7 +30,7 @@ function App() {
           />
           {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
           <Route path="/accommodation" element={<Accommodation />} />
-          <Route path="/create-booking" element={<Booking />} />
+          <Route path="/booking" element={<Booking />} />
         </Routes>
       </AuthProvider>
     </>
