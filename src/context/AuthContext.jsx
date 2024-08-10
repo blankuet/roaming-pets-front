@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
   const verifyToken = async (token) => {
     try {
-      const response = await fetch('http://localhost:5005/auth/verify', {
+      const response = await fetch('http://localhost:5005/auth/host/verify', {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:5005/auth/login', {
+      const response = await fetch('http://localhost:5005/auth/host/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -46,7 +46,8 @@ const AuthProvider = ({ children }) => {
       if (response.ok) {
         localStorage.setItem('token', data.authToken);
         setAuth({ token: data.authToken, user: data });
-        navigate('/dashboard');
+        console.log(data)
+        navigate('/host/dashboard');
       } else {
         console.error('Error:', data.message);
       }
@@ -57,7 +58,7 @@ const AuthProvider = ({ children }) => {
 
   const signup = async (name, email, password) => {
     try {
-      const response = await fetch('http://localhost:5005/auth/signup', {
+      const response = await fetch('http://localhost:5005/auth/host/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
@@ -65,7 +66,7 @@ const AuthProvider = ({ children }) => {
 
       const data = await response.json();
       if (response.ok) {
-        navigate('/login');
+        navigate('/host/login');
       } else {
         console.error('Error:', data.message);
       }
@@ -77,7 +78,7 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('token');
     setAuth({ token: null, user: null });
-    navigate('/login');
+    navigate('/host/login');
   };
 
   return (
