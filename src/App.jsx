@@ -1,28 +1,34 @@
 import './App.css'
-
 import { Route, Routes } from 'react-router-dom'
-import { AuthProvider } from './context/TravelerAuthContext.jsx'
-import SignUpT from './pages/traveler/SignUpT.jsx'
-import LoginT from './pages/traveler/LoginT.jsx'
-import DashboardT from './pages/traveler/DashboardT.jsx'
-import TravelerPrivateRoute from './components/TravelerPrivateRoute.jsx'
+import { AuthProvider } from './context/AuthContext.jsx'
+// import { Navigate } from 'react-router-dom'
+import SignUp from './pages/Host/SignUp.jsx'
+import Login from './pages/Host/Login.jsx'
+import Dashboard from './pages/Host/Dashboard.jsx'
+import PrivateRoute from './components/PrivateRoute.jsx'
+import Home from './pages/Host/Home.jsx'
+import Navbar from './components/Navbar.jsx'
 
 function App() {
+
   return (
     <>
-        <AuthProvider>
+    <Navbar />
+      <AuthProvider>
           <Routes>
-            <Route path="/traveler/signup" element={<SignUpT />} />
-            <Route path="/traveler/login" element={<LoginT />} /> 
-            <Route path="/traveler/dashboard" element={
-              <TravelerPrivateRoute>
-                <DashboardT />
-              </TravelerPrivateRoute>
+            <Route path="/host" element={<Home />} />
+            <Route path="/host/signup" element={<SignUp />} />
+            <Route path="/host/login" element={<Login />} />
+            <Route path="/host/dashboard" element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
             } />
+            {/* <Route path="*" element={<Navigate to="/login" replace />} /> */}
           </Routes>
       </AuthProvider>
     </>
   )
 }
 
-export default App
+export default App;
