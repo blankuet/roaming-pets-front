@@ -1,9 +1,9 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
-import SignUp from "./pages/SignUp.jsx";
-import Login from "./pages/Login.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import SignUp from "./pages/Host/SignUp.jsx";
+import Login from "./pages/Host/Login.jsx";
+import Dashboard from "./pages/Host/Dashboard.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Accommodation from "./pages/Accommodation.jsx";
 import Booking from "./pages/Booking.jsx";
