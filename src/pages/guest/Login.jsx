@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
-import { AuthContext } from '../../context/AuthContext';
+import { GuestContext } from '../../context/GuestContext';
 
 function Login() {
-  const { login } = useContext(AuthContext);
-  const [formData, setFormData] = useState({ email: '', password: '', userType: 'host' });
+  const { login } = useContext(GuestContext);
+  const [formData, setFormData] = useState({ email: '', password: '', userType: 'guest' });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
