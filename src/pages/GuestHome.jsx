@@ -14,23 +14,24 @@ function Home() {
         <div className="flex flex-col items-center space-y-6">
           <div className="flex flex-col items-center">
             <p className="text-white mb-2">Do not have an account yet? Register here:</p>
-            <NavLink to="/host/signup" className="w-full flex flex-col items-center">
+            <NavLink to="/guest/signup" className="w-full flex flex-col items-center">
               <p className="text-xl text-center uppercase text-white">Sign up</p>
             </NavLink>
           </div>
           
           <div className="flex flex-col items-center">
             <p className="text-white mb-2">Do you have an account?</p>
-            <NavLink to="/host/login" className="w-full flex flex-col items-center">
+            <NavLink to="/guest/login" className="w-full flex flex-col items-center">
               <p className="text-xl text-center uppercase text-white">Login</p>
             </NavLink>
           </div>
           <div className="flex flex-col items-center">
-            <p className="text-white mb-2">Do you want to make a Guest profile?</p>
-            <NavLink to="/" className="w-full flex flex-col items-center">
-              <p className="text-xl text-center uppercase text-white">Guest</p>
+            <p className="text-white mb-2">Do you want to make a Host profile?</p>
+            <NavLink to="host/" className="w-full flex flex-col items-center">
+              <p className="text-xl text-center uppercase text-white">Host</p>
             </NavLink>
           </div>
+          
         </div>
       </div>
     </>
