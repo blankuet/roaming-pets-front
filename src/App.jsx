@@ -60,7 +60,6 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        {/* Rutas de invitados con el GuestNavbar */}
         <Route
           path="/"
           element={
@@ -89,7 +88,6 @@ function App() {
           }
         />
 
-        {/* Rutas de host con el HostNavbar */}
         <Route
           path="/host"
           element={
@@ -126,10 +124,10 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* Puedes añadir una ruta de redirección por defecto aquí si lo necesitas */}
       </Routes>
     </AuthProvider>
   );
 }
 
 export default App;
+

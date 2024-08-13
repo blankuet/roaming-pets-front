@@ -43,10 +43,12 @@ const AuthProvider = ({ children }) => {
       });
 
       const data = await response.json();
+      console.log(data)
       if (response.ok) {
         localStorage.setItem('token', data.authToken);
+        localStorage.setItem('user', JSON.stringify(data));
         setAuth({ token: data.authToken, user: data });
-        console.log(data)
+        console.log(auth)
         navigate('/host/dashboard');
       } else {
         console.error('Error:', data.message);

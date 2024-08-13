@@ -4,11 +4,12 @@ import { AuthContext } from '../context/AuthContext';
 import PropTypes from 'prop-types';
 
 const PrivateRoute = ({ children }) => {
-  const { auth } = useContext(AuthContext);
-  return auth.token ? (
-    children === "/login" ? <Navigate to="/host/dashboard" /> : children
+  // const { auth } = useContext(AuthContext);
+  const token = localStorage.getItem('token');
+  return token ? (
+    children === "/host/login" ? <Navigate to="/host/dashboard" /> : children
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/host/login" />
   );
 };
 
