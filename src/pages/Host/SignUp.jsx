@@ -70,3 +70,4 @@
  export default SignUp;
 
 
+// 1-agosto(token) min 20 aprox para sacan el mensaje de error del backend en el Front
