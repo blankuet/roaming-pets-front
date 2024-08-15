@@ -19,6 +19,7 @@ import GuestNavbar from "./components/GuestNavbar.jsx";
 function App() {
   return (
     <AuthProvider>
+      <GuestProvider>
       <Routes>
         <Route
           path="/"
@@ -84,7 +85,45 @@ function App() {
             </PrivateRoute>
           }
         />
+        {/* here we are using the routes for guest pages */}
+        <Route
+          path="/guest"
+          element={
+            <>
+              <GuestNavbar />
+              {/* <GuestHome /> */}
+            </>
+          }
+        />
+        <Route
+          path="/guest/signup"
+          element={
+            <>
+            <GuestNavbar />
+            <GuestSignUp />
+            </>
+          }
+        />
+        <Route
+          path="/guest/login"
+          element={
+            <>
+            <GuestNavbar />
+            <GuestLogin />
+            </>
+          }
+        />
+        <Route
+          path="/guest/dashboard"
+          element={
+            <PrivateRoute>
+            <GuestNavbar />
+            <GuestDashboard />
+            </PrivateRoute>
+          }
+          />
       </Routes>
+      </GuestProvider>
     </AuthProvider>
   );
 }
