@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
   const verifyToken = async (token) => {
     try {
-      const response = await fetch('http://localhost:5005/auth/host/verify', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/verify`, {
         method: 'GET',
         headers: { 'Authorization': `Bearer ${token}` },
       });
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:5005/auth/host/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
 
   const signup = async (name, email, password) => {
     try {
-      const response = await fetch('http://localhost:5005/auth/host/signup', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
@@ -83,8 +83,56 @@ const AuthProvider = ({ children }) => {
     navigate('/host/login');
   };
 
+  const updateUser = async (updatedUser) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/update`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${auth.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUser),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update user');
+      }
+
+      const data = await response.json();
+      setAuth(prevAuth => ({ ...prevAuth, user: data.user }));
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
+
+  const deleteUser = async (userId) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/delete`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${auth.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId }),
+    });
+
+    if (response.ok) {
+      // Si la eliminación es exitosa, actualiza el estado
+      setAuth({ token: null, user: null });
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      navigate('/host/login');
+    } else {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to delete user');
+    }
+  } catch (error) {
+    console.error('Error deleting user:', error);
+  }
+};
+
   return (
-    <AuthContext.Provider value={{ auth, login, signup, logout }}>
+    <AuthContext.Provider value={{ auth, login, signup, logout, deleteUser, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

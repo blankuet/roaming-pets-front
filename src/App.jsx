@@ -12,6 +12,7 @@ import HostNavbar from "./components/HostNavbar.jsx";
 import GuestHome from "./pages/GuestHome.jsx";
 import GuestNavbar from "./components/GuestNavbar.jsx"; 
 import HostProfile from "./pages/Host/HostProfile.jsx";
+import EditProfile from "./pages/Host/EditProfile.jsx";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           }
         />
         <Route
-          path="/accommodation"
+          path="guest/accommodation"
           element={
             <>
               <GuestNavbar />
@@ -36,7 +37,7 @@ function App() {
           }
         />
         <Route
-          path="/booking"
+          path="guest/booking"
           element={
             <>
               <GuestNavbar />
@@ -87,6 +88,15 @@ function App() {
             <PrivateRoute>
               <HostNavbar />
               <HostProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/host/edit-profile"
+          element={
+            <PrivateRoute>
+              <HostNavbar />
+              <EditProfile />
             </PrivateRoute>
           }
         />

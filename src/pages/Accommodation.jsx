@@ -6,7 +6,7 @@ export default function Accommodation() {
   useEffect(() => {
     const fetchAccommodation = async () => {
       try {
-        const response = await fetch("http://localhost:5005/api/accommodation");
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/accommodation`);
         const data = await response.json();
         setAccommodation(data);
       } catch (error) {
