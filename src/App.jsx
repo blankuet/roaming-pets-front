@@ -15,6 +15,7 @@ import Home from "./pages/Host/Home.jsx";
 import HostNavbar from "./components/HostNavbar.jsx";
 import GuestHome from "./pages/GuestHome.jsx";
 import GuestNavbar from "./components/GuestNavbar.jsx"; 
+import HostProfile from "./pages/Host/HostProfile.jsx";
 
 function App() {
   return (
@@ -122,6 +123,24 @@ function App() {
             </PrivateRoute>
           }
           />
+        <Route
+          path="/host/profile"
+          element={
+            <PrivateRoute>
+              <HostNavbar />
+              <HostProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/host/accommodation"
+          element={
+            <PrivateRoute>
+              <HostNavbar />
+              <Accommodation />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       </GuestProvider>
     </AuthProvider>

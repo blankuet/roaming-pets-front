@@ -35,6 +35,17 @@
           />
         </div>
         <div className="mb-4">
+          <label htmlFor="lastName" className="block text-gray-400">Last Name:</label>
+          <input 
+            type="text" 
+            name="lastName" 
+            placeholder="Last name" 
+            onChange={handleChange} 
+            required 
+            className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+        <div className="mb-4">
           <label htmlFor="email" className="block text-gray-400">Email:</label>
           <input 
             type="email" 
