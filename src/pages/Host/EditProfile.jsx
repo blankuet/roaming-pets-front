@@ -15,7 +15,7 @@ function EditProfile() {
   useEffect(() => {
     if (auth.user) {
       setName(auth.user.name || '');
-      setLastName(auth.user.lastName || '');
+      setLastName(auth.user.lastname || '');
       setEmail(auth.user.email || '');
     }
   }, [auth.user]);
@@ -24,13 +24,16 @@ function EditProfile() {
     e.preventDefault();
     setError('');
     setSuccess('');
+    const storageUser = localStorage.getItem('user');
+    const prevUser = JSON.parse(storageUser);
 
     try {
       const updatedUser = {
         id: auth.user._id,
         name,
-        lastName,
+        lastname: lastName,
         email,
+        imageUrl: prevUser.imageUrl,
       };
 
       const userFromStorage = localStorage.getItem('user');

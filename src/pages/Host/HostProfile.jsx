@@ -96,7 +96,7 @@ function HostProfile() {
         <>
           <h1 className="text-5xl font-bold text-white text-center mb-6 w-full">Welcome, {auth.user.name}</h1>
           <p className='text-white'>Name: {user.name}</p>
-          <p className='text-white'>Last Name: {user.lastName}</p>
+          <p className='text-white'>Last Name: {user.lastname}</p>
           <p className='text-white'>Email: {user.email}</p>
           <div className="flex flex-col items-start w-full max-w-2xl">
             {profileImage && (

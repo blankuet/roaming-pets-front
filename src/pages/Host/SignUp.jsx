@@ -3,7 +3,7 @@
 
  function SignUp() {
    const { signup } = useContext(AuthContext);
-   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+   const [formData, setFormData] = useState({ name: '', email: '', password: '', lastname: '' });
 
    const handleChange = (e) => {
      setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -11,7 +11,7 @@
 
    const handleSubmit = (e) => {
      e.preventDefault();
-     signup(formData.name, formData.email, formData.password);
+     signup(formData.name, formData.email, formData.password, formData.lastname);
    };
    return (
     <div 
@@ -35,10 +35,10 @@
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="lastName" className="block text-gray-400">Last Name:</label>
+          <label htmlFor="lastname" className="block text-gray-400">Last Name:</label>
           <input 
             type="text" 
-            name="lastName" 
+            name="lastname" 
             placeholder="Last name" 
             onChange={handleChange} 
             required 
