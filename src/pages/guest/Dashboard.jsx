@@ -4,33 +4,6 @@ import { GuestContext } from '../../context/GuestContext';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaClipboardList, FaHeart, FaHome, FaSignOutAlt } from 'react-icons/fa';
 
-
-/* 
-function GuestDashboard() {
-  const { auth, logout } = useContext(GuestContext);
-
-  return (
-    <>
-      {auth.user ? (
-        <>
-          <div>
-            <h1>Welcome, {auth.user.name}</h1>
-            <p>Email: {auth.user.email}</p>
-            <button onClick={logout}>Logout</button>
-          </div>
-          <div className='guest-dashboard'>
-           
-          </div>
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </>
-  );
-}
-
-export default GuestDashboard; */
-
 function GuestDashboard() {
   const { auth, logout } = useContext(GuestContext);
   const navigate = useNavigate();
@@ -46,7 +19,7 @@ function GuestDashboard() {
           <div className="guest-dashboard grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto p-4">
             <button 
               className="bg-blue-500 text-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-blue-600 transition"
-              onClick={() => navigate('/account')}
+              onClick={() => navigate('/guest/profile')}
             >
               <FaUser className="text-3xl mb-2" />
               Your Account
@@ -67,7 +40,7 @@ function GuestDashboard() {
             </button>
             <button 
               className="bg-yellow-500 text-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-yellow-600 transition"
-              onClick={() => navigate('/become-host')}
+              onClick={() => navigate('/host/signup')}
             >
               <FaHome className="text-3xl mb-2" />
               Want to be a Host?
