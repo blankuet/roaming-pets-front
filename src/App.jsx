@@ -5,9 +5,9 @@ import { GuestProvider } from "./context/GuestContext.jsx";
 import SignUp from "./pages/Host/SignUp.jsx";
 import Login from "./pages/Host/Login.jsx";
 import Dashboard from "./pages/Host/Dashboard.jsx";
-import GuestSignUp from "./pages/guest/SignUp.jsx";
-import GuestLogin from "./pages/guest/Login.jsx";
-import GuestDashboard from "./pages/guest/Dashboard.jsx"; 
+// import GuestSignUp from "./pages/guest/SignUp.jsx";
+// import GuestLogin from "./pages/guest/Login.jsx";
+// import GuestDashboard from "./pages/guest/Dashboard.jsx"; 
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Accommodation from "./pages/Accommodation.jsx";
 import Booking from "./pages/Booking.jsx";
@@ -15,6 +15,8 @@ import Home from "./pages/Host/Home.jsx";
 import HostNavbar from "./components/HostNavbar.jsx";
 import GuestHome from "./pages/GuestHome.jsx";
 import GuestNavbar from "./components/GuestNavbar.jsx"; 
+import HostProfile from "./pages/Host/HostProfile.jsx";
+import EditProfile from "./pages/Host/EditProfile.jsx";
 
 function App() {
   return (
@@ -31,7 +33,7 @@ function App() {
           }
         />
         <Route
-          path="/accommodation"
+          path="guest/accommodation"
           element={
             <>
               <GuestNavbar />
@@ -40,7 +42,7 @@ function App() {
           }
         />
         <Route
-          path="/booking"
+          path="guest/booking"
           element={
             <>
               <GuestNavbar />
@@ -85,43 +87,24 @@ function App() {
             </PrivateRoute>
           }
         />
-        {/* here we are using the routes for guest pages */}
         <Route
-          path="/guest"
-          element={
-            <>
-              <GuestNavbar />
-              {/* <GuestHome /> */}
-            </>
-          }
-        />
-        <Route
-          path="/guest/signup"
-          element={
-            <>
-            <GuestNavbar />
-            <GuestSignUp />
-            </>
-          }
-        />
-        <Route
-          path="/guest/login"
-          element={
-            <>
-            <GuestNavbar />
-            <GuestLogin />
-            </>
-          }
-        />
-        <Route
-          path="/guest/dashboard"
+          path="/host/profile"
           element={
             <PrivateRoute>
-            <GuestNavbar />
-            <GuestDashboard />
+              <HostNavbar />
+              <HostProfile />
             </PrivateRoute>
           }
-          />
+        />
+        <Route
+          path="/host/edit-profile"
+          element={
+            <PrivateRoute>
+              <HostNavbar />
+              <EditProfile />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       </GuestProvider>
     </AuthProvider>
