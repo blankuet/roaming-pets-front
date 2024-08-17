@@ -3,17 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 function EditProfile() {
-  const { auth, updateUser } = useContext(AuthContext); // Suponiendo que tienes una función updateUser en AuthContext
+  const { auth, updateUser } = useContext(AuthContext); 
   const navigate = useNavigate();
 
-  // Estados para almacenar los datos del formulario
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // Cargar los datos del usuario en el formulario cuando se monta el componente
   useEffect(() => {
     if (auth.user) {
       setName(auth.user.name || '');
@@ -22,29 +20,28 @@ function EditProfile() {
     }
   }, [auth.user]);
 
-  // Manejar el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
 
     try {
-      // Crear un objeto con los datos actualizados del usuario
       const updatedUser = {
-        id: auth.user.id,
+        id: auth.user._id,
         name,
         lastName,
         email,
       };
 
-      // Llamar a la función updateUser del contexto para actualizar el perfil
+      const userFromStorage = localStorage.getItem('user');
+      const user = JSON.parse(userFromStorage);
+      console.log(user)
+
       await updateUser(updatedUser);
       setSuccess('Profile updated successfully!');
       
-      // Guardar el usuario actualizado en localStorage si es necesario
       localStorage.setItem('user', JSON.stringify(updatedUser));
 
-      // Redirigir al perfil después de un breve tiempo
       setTimeout(() => {
         navigate('/host/profile');
       }, 2000);
@@ -101,7 +98,7 @@ function EditProfile() {
           <button type="submit" className="text-xl text-center uppercase text-white bg-blue-500 px-4 py-2 rounded-lg">
             Save Changes
           </button>
-          <button type="button" onClick={() => navigate('/profile')} className="text-xl text-center uppercase text-white bg-gray-500 px-4 py-2 rounded-lg">
+          <button type="button" onClick={() => navigate('/host/profile')} className="text-xl text-center uppercase text-white bg-gray-500 px-4 py-2 rounded-lg">
             Cancel
           </button>
         </div>
