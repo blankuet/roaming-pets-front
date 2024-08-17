@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import HomeIcon from "/public/Home.jpg";
 import { useContext, useEffect } from "react";
 import { GuestContext } from "../context/GuestContext.jsx";
-//borra
 
 function GuestNavbar() {
   const { auth, logout } = useContext(GuestContext);
@@ -15,7 +14,7 @@ function GuestNavbar() {
     <nav className="bg-black shadow-md py-4 px-6 flex items-center justify-between">
       {/* Icono de Home */}
       {!auth.user ? (
-        <NavLink to="/guest/" className="flex items-center">
+        <NavLink to="/" className="flex items-center">
           <img src={HomeIcon} alt="Home" className="h-10" />
         </NavLink>
       ) : (

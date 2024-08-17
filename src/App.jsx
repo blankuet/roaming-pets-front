@@ -8,6 +8,8 @@ import Dashboard from "./pages/Host/Dashboard.jsx";
 import GuestSignUp from "./pages/guest/SignUp.jsx";
 import GuestLogin from "./pages/guest/Login.jsx";
 import GuestDashboard from "./pages/guest/Dashboard.jsx"; 
+import GuestProfile from "./pages/guest/GuestProfile.jsx";
+import GuestEditProfile from "./pages/guest/EditProfile.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Accommodation from "./pages/Accommodation.jsx";
 import Booking from "./pages/Booking.jsx";
@@ -87,7 +89,26 @@ function App() {
             </PrivateRoute>
           }
           />
+          <Route
+          path="/guest/profile"
+          element={
+            <PrivateRoute>
+            <GuestNavbar />
+            <GuestProfile />
+            </PrivateRoute>
+          }
+          />
+          <Route
+          path="/guest/edit-profile"
+          element={
+            <PrivateRoute>
+              <HostNavbar />
+              <GuestEditProfile />
+            </PrivateRoute>
+          }
+        />
 
+{/* here we are using the routes for host pages */}
         <Route
           path="/host"
           element={
