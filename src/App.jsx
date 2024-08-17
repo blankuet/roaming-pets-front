@@ -1,9 +1,13 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import { GuestProvider } from "./context/GuestContext.jsx";
 import SignUp from "./pages/Host/SignUp.jsx";
 import Login from "./pages/Host/Login.jsx";
 import Dashboard from "./pages/Host/Dashboard.jsx";
+// import GuestSignUp from "./pages/guest/SignUp.jsx";
+// import GuestLogin from "./pages/guest/Login.jsx";
+// import GuestDashboard from "./pages/guest/Dashboard.jsx"; 
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import Accommodation from "./pages/Accommodation.jsx";
 import Booking from "./pages/Booking.jsx";
@@ -17,6 +21,7 @@ import EditProfile from "./pages/Host/EditProfile.jsx";
 function App() {
   return (
     <AuthProvider>
+      <GuestProvider>
       <Routes>
         <Route
           path="/"
@@ -100,16 +105,8 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/host/accommodation"
-          element={
-            <PrivateRoute>
-              <HostNavbar />
-              <Accommodation />
-            </PrivateRoute>
-          }
-        />
       </Routes>
+      </GuestProvider>
     </AuthProvider>
   );
 }

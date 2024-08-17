@@ -32,7 +32,7 @@ const ImageForm = ({ setImage }) => {
       const addImage = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/upload`, {
         method: "POST",
         body: JSON.stringify({
-          profileImage: file.secure_url,
+          imageUrl: file.secure_url,
           user,
         }),
         headers: {
