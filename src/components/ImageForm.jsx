@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { AuthContext } from "../context/AuthContext";
 
 const ImageForm = ({ setImage }) => {
-  const preset_name = "roamingpets";
-  const cloud_name = "dsybonpmv";
-  console.log(cloud_name);
+  const preset_name = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+  const cloud_name = import.meta.env.VITE_CLOUDINARY_NAME;
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const token = localStorage.getItem("token");
@@ -30,7 +29,7 @@ const ImageForm = ({ setImage }) => {
       const file = await response.json();
       console.log(file);
 
-      const addImage = await fetch("http://localhost:5005/auth/host/upload", {
+      const addImage = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/upload`, {
         method: "POST",
         body: JSON.stringify({
           imageUrl: file.secure_url,
