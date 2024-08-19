@@ -18,6 +18,7 @@ import GuestNavbar from "./components/GuestNavbar.jsx";
 import HostProfile from "./pages/Host/HostProfile.jsx";
 import EditProfile from "./pages/Host/EditProfile.jsx";
 
+
 function App() {
   return (
     <AuthProvider>
