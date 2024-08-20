@@ -55,7 +55,7 @@ function AccommodationGuest() {
       }
       const data = await response.json();
       console.log("Booking created:", data);
-      navigate("/");
+      navigate("/"); // Redirige a la página principal después de crear la reserva
     } catch (error) {
       console.error("Error creating booking:", error);
     }

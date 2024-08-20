@@ -34,7 +34,15 @@ function App() {
             }
           />
 
-          <Route path="/guest/accommodation" element={<AccommodationGuest />} />
+          <Route
+            path="/guest/accommodation"
+            element={
+              <>
+                <GuestNavbar />
+                <AccommodationGuest />
+              </>
+            }
+          />
 
           <Route
             path="/host/accommodation"
@@ -47,7 +55,12 @@ function App() {
           />
           <Route
             path="/host/accommodation/edit/:accommodationId"
-            element={<AccommodationEditHost />}
+            element={
+              <>
+                <HostNavbar />
+                <AccommodationEditHost />
+              </>
+            }
           />
 
           <Route
