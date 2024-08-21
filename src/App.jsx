@@ -16,6 +16,7 @@ import GuestNavbar from "./components/GuestNavbar.jsx";
 import AccommodationGuest from "./pages/guest/AccommodationGuest.jsx";
 import AccommodationHost from "./pages/Host/AccommodationHost.jsx";
 import AccommodationEditHost from "./pages/Host/AccommodationEditHost.jsx";
+import AccommodationDetailsHost from "./pages/Host/AccommodationDetailsHost.jsx";
 import HostProfile from "./pages/Host/HostProfile.jsx";
 import EditProfile from "./pages/Host/EditProfile.jsx";
 
@@ -59,6 +60,16 @@ function App() {
               <>
                 <HostNavbar />
                 <AccommodationEditHost />
+              </>
+            }
+          />
+
+          <Route
+            path="/host/accommodation/details/:accommodationId"
+            element={
+              <>
+                <HostNavbar />
+                <AccommodationDetailsHost />
               </>
             }
           />

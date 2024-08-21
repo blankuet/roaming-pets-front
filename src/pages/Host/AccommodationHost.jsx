@@ -75,8 +75,8 @@ function AccommodationHost() {
     }
   };
 
-  const handleEditClick = (accommodationId) => {
-    navigate(`/host/accommodation/edit/${accommodationId}`);
+  const handleAccommodationClick = (accommodationId) => {
+    navigate(`/host/accommodation/details/${accommodationId}`);
   };
 
   return (
@@ -90,7 +90,7 @@ function AccommodationHost() {
             <li
               key={accommodation._id}
               className="mb-2 text-white cursor-pointer"
-              onClick={() => handleEditClick(accommodation._id)}
+              onClick={() => handleAccommodationClick(accommodation._id)}
             >
               {accommodation.name} - {accommodation.address}
             </li>

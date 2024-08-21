@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-function AccommodationEditHost() {
+const AccommodationEditHost = () => {
   const [formValues, setFormValues] = useState({
     name: "",
     address: "",
     price: "",
     maxPersons: "",
     description: "",
+    images: [],
   });
   const { accommodationId } = useParams();
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function AccommodationEditHost() {
           price: data.price,
           maxPersons: data.maxPersons,
           description: data.description,
+          images: data.images || [],
         });
       } catch (error) {
         console.error("Error fetching accommodation details:", error);
@@ -41,10 +43,53 @@ function AccommodationEditHost() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormValues({
-      ...formValues,
+    setFormValues((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
+  };
+
+  const handleImageChange = async (event, index) => {
+    const preset_name = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+    const cloud_name = import.meta.env.VITE_CLOUDINARY_NAME;
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    try {
+      const data = new FormData();
+      data.append("file", file);
+      data.append("upload_preset", preset_name);
+
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const fileData = await response.json();
+      const newImages = [...formValues.images];
+      newImages[index] = fileData.secure_url;
+
+      setFormValues((prevState) => ({
+        ...prevState,
+        images: newImages,
+      }));
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  const handleRemoveImage = (index) => {
+    const newImages = formValues.images.filter(
+      (_, imgIndex) => imgIndex !== index
+    );
+    setFormValues((prevState) => ({
+      ...prevState,
+      images: newImages,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -159,6 +204,32 @@ function AccommodationEditHost() {
             />
           </div>
 
+          {/* Mostrar y editar imágenes */}
+          <div className="mb-6">
+            <h3 className="text-gray-400 mb-2">Images:</h3>
+            {formValues.images.map((image, index) => (
+              <div key={index} className="mb-4 flex items-center">
+                <img
+                  src={image}
+                  alt={`Accommodation ${index + 1}`}
+                  className="w-20 h-20 rounded-lg mr-4"
+                />
+                <input
+                  type="file"
+                  onChange={(e) => handleImageChange(e, index)}
+                  className="w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(index)}
+                  className="ml-2 text-red-500 hover:text-red-700"
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+          </div>
+
           <button
             type="submit"
             className="w-full bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-300"
@@ -169,6 +240,6 @@ function AccommodationEditHost() {
       </div>
     </div>
   );
-}
+};
 
 export default AccommodationEditHost;
