@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { AuthContext } from "../context/AuthContext";
 
@@ -6,8 +6,21 @@ const ImageForm = ({ setImage }) => {
   const preset_name = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = import.meta.env.VITE_CLOUDINARY_NAME;
   const [loading, setLoading] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false);
   const { user } = useContext(AuthContext);
   const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    // Verifica si hay una imagen almacenada para el usuario
+    const userFromStorage = localStorage.getItem("user");
+    if (userFromStorage) {
+      const userData = JSON.parse(userFromStorage);
+      if (userData.imageUrl) {
+        setImageUploaded(true); // Si ya hay una imagen, establece el estado en true
+        setImage(userData.imageUrl); // Opcional: establece la imagen en el estado del componente padre
+      }
+    }
+  }, [setImage]); // Este efecto se ejecuta una vez cuando se monta el componente
 
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -34,7 +47,7 @@ const ImageForm = ({ setImage }) => {
         {
           method: "POST",
           body: JSON.stringify({
-            profileImage: file.secure_url,
+            imageUrl: file.secure_url,
             user,
           }),
           headers: {
@@ -51,6 +64,7 @@ const ImageForm = ({ setImage }) => {
       userData.imageUrl = file.secure_url;
       localStorage.setItem("user", JSON.stringify(userData));
       setImage(file.secure_url);
+      setImageUploaded(true); // Actualizar el estado para indicar que la imagen fue cargada
       setLoading(false);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -58,15 +72,36 @@ const ImageForm = ({ setImage }) => {
     }
   };
 
+  const handleEditPhoto = () => {
+    setImageUploaded(false); // Permitir subir una nueva imagen
+  };
+
   return (
     <div className="relative">
-      <input
-        type="file"
-        name="file"
-        placeholder="Upload an image"
-        onChange={uploadImage}
-        className="mb-4"
-      />
+      {imageUploaded ? (
+        <button
+          onClick={handleEditPhoto}
+          className="text-lg font-semibold text-lime-200 bg-purple-500 hover:bg-purple-600 px-6 py-3 rounded-lg shadow-md transition-all"
+        >
+          Edit photo
+        </button>
+      ) : (
+        <>
+          <input
+            type="file"
+            id="fileInput"
+            name="file"
+            onChange={uploadImage}
+            className="hidden"
+          />
+          <label
+            htmlFor="fileInput"
+            className="mb-4 bg-purple-500 hover:bg-purple-600 text-lime-200 py-2 px-4 rounded cursor-pointer"
+          >
+            Select File
+          </label>
+        </>
+      )}
 
       {loading && <h3>Loading...</h3>}
     </div>
@@ -76,4 +111,5 @@ const ImageForm = ({ setImage }) => {
 ImageForm.propTypes = {
   setImage: PropTypes.func.isRequired,
 };
+
 export default ImageForm;

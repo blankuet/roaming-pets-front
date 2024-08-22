@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function Login() {
-  const { login } = useContext(AuthContext);
+  const { login, error } = useContext(AuthContext); // Acceder al estado de error global
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,6 +30,9 @@ function Login() {
         <h2 className="text-2xl font-bold text-center text-white mb-6">
           Login
         </h2>
+        {error && ( // Mostrar mensaje de error si existe
+          <div className="mb-4 text-red-500 text-center">{error}</div>
+        )}
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-400">
             Email:

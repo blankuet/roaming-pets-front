@@ -2,11 +2,12 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 function SignUp() {
-  const { signup } = useContext(AuthContext);
+  const { signup, error } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
+    lastname: "",
   });
 
   const handleChange = (e) => {
@@ -15,8 +16,9 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(formData.name, formData.email, formData.password);
+    signup(formData.name, formData.email, formData.password, formData.lastname);
   };
+
   return (
     <div
       className="flex justify-center items-center min-h-screen bg-cover bg-center"
@@ -29,6 +31,7 @@ function SignUp() {
         <h2 className="text-2xl font-bold text-center text-white mb-6">
           Sign Up
         </h2>
+        {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-400">
             Name:
@@ -43,12 +46,12 @@ function SignUp() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="lastName" className="block text-gray-400">
+          <label htmlFor="lastname" className="block text-gray-400">
             Last Name:
           </label>
           <input
             type="text"
-            name="lastName"
+            name="lastname"
             placeholder="Last name"
             onChange={handleChange}
             required
@@ -93,5 +96,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-// 1-agosto(token) min 20 aprox para sacan el mensaje de error del backend en el Front

@@ -21,6 +21,10 @@ import AccommodationDetailsGuest from "./pages/guest/AccommodationDetailsGuest.j
 import BookingHost from "./pages/Host/BookingHost";
 import HostProfile from "./pages/Host/HostProfile.jsx";
 import EditProfile from "./pages/Host/EditProfile.jsx";
+import GuestProfile from "./pages/guest/GuestProfile.jsx";
+import GuestEditProfile from "./pages/guest/EditProfile.jsx";
+import Booking from "./pages/Booking.jsx";
+import PublicHostProfile from "./pages/Host/PublicHostProfile.jsx";
 
 function App() {
   return (
@@ -66,6 +70,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/host/accommodation/edit/:accommodationId"
             element={
@@ -105,6 +110,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/host/signup"
             element={
@@ -114,6 +120,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/host/login"
             element={
@@ -123,6 +130,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/host/dashboard"
             element={
@@ -132,16 +140,16 @@ function App() {
               </PrivateRoute>
             }
           />
-          {/* here we are using the routes for guest pages */}
+
           <Route
             path="/guest"
             element={
               <>
                 <GuestNavbar />
-                {/* <GuestHome /> */}
               </>
             }
           />
+
           <Route
             path="/guest/signup"
             element={
@@ -151,6 +159,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/guest/login"
             element={
@@ -160,6 +169,7 @@ function App() {
               </>
             }
           />
+
           <Route
             path="/guest/dashboard"
             element={
@@ -167,6 +177,56 @@ function App() {
                 <GuestNavbar />
                 <GuestDashboard />
               </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/guest/profile"
+            element={
+              <PrivateRoute>
+                <GuestNavbar />
+                <GuestProfile />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/guest/edit-profile"
+            element={
+              <PrivateRoute>
+                <HostNavbar />
+                <GuestEditProfile />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/host/profile"
+            element={
+              <PrivateRoute>
+                <HostNavbar />
+                <HostProfile />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/host/edit-profile"
+            element={
+              <PrivateRoute>
+                <HostNavbar />
+                <EditProfile />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/host/:hostId"
+            element={
+              <>
+                <GuestNavbar />
+                <PublicHostProfile />
+              </>
             }
           />
         </Routes>
