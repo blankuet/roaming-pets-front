@@ -22,7 +22,10 @@ function BookingHost() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div
+      className="min-h-screen flex items-center justify-center bg-gray-900"
+      style={{ backgroundImage: "url('/public/animals.jpg')" }}
+    >
       <div className="w-full max-w-4xl p-6 bg-black bg-opacity-75 rounded-lg shadow-md text-white">
         <h1 className="text-3xl font-bold mb-4 text-center">Your Bookings</h1>
         <ul>

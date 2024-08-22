@@ -80,7 +80,10 @@ function AccommodationHost() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div
+      className="min-h-screen flex items-center justify-center bg-gray-900"
+      style={{ backgroundImage: "url('/public/animals.jpg')" }}
+    >
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold text-white mb-6 text-center">
           Your Accommodations
