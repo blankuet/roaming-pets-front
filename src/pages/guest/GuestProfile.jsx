@@ -47,7 +47,7 @@ function GuestProfile() {
         Welcome, {auth.user.name}
       </h1>
 
-      <div className="bg-white bg-opacity-80 rounded-lg shadow-lg p-6 max-w-lg w-full">
+      <div className="bg-black bg-opacity-80 rounded-lg shadow-lg p-6 max-w-lg w-full">
         <div className="flex flex-col items-center mb-6">
           {profileImage && (
             <img
@@ -56,9 +56,9 @@ function GuestProfile() {
               className="w-32 h-32 rounded-full object-cover mb-4 shadow-md"
             />
           )}
-          <p className="text-xl font-semibold text-gray-800 mb-2">Name: {user.name}</p>
-          <p className="text-xl font-semibold text-gray-800 mb-2">Last Name: {user.lastname}</p>
-          <p className="text-xl font-semibold text-gray-800 mb-2">Email: {user.email}</p>
+          <p className="text-xl font-semibold text-white mb-2">Name: {user.name}</p>
+          <p className="text-xl font-semibold text-white mb-2">Last Name: {user.lastname}</p>
+          <p className="text-xl font-semibold text-white mb-2">Email: {user.email}</p>
           <ImageForm setImage={setProfileImage} />
         </div>
 
