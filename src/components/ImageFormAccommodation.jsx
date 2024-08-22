@@ -59,7 +59,7 @@ const ImageFormAccommodation = ({ accommodationId, onSave }) => {
       }
 
       const data = await response.json();
-      onSave(data.images); // Actualiza las imágenes en AccommodationDetailsHost.jsx
+      onSave(data.images);
     } catch (error) {
       console.error("Error saving images:", error);
     }

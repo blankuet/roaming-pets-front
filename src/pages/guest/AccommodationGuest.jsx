@@ -35,6 +35,7 @@ function AccommodationGuest() {
 
   const handleSelectAccommodation = (accommodationId) => {
     setSelectedAccommodation(accommodationId);
+    navigate(`/guest/accommodation/${accommodationId}`);
   };
 
   const handleSubmit = async (e) => {
@@ -88,6 +89,26 @@ function AccommodationGuest() {
           </h2>
 
           <div className="mb-4">
+            <label htmlFor="accommodation" className="block text-gray-400">
+              Select Accommodation:
+            </label>
+            <select
+              name="accommodation"
+              value={selectedAccommodation}
+              onChange={(e) => setSelectedAccommodation(e.target.value)}
+              required
+              className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="">Choose an accommodation</option>
+              {accommodations.map((accommodation) => (
+                <option key={accommodation._id} value={accommodation._id}>
+                  {accommodation.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="mb-4">
             <label htmlFor="dateFrom" className="block text-gray-400">
               Date From:
             </label>
@@ -111,21 +132,6 @@ function AccommodationGuest() {
               value={bookingDetails.dateTo}
               onChange={handleChange}
               required
-              className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="guestEmail" className="block text-gray-400">
-              Guest Email:
-            </label>
-            <input
-              type="email"
-              name="guestEmail"
-              value={bookingDetails.guestEmail}
-              onChange={handleChange}
-              required
-              placeholder="guest@example.com"
               className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
