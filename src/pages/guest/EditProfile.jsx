@@ -8,6 +8,7 @@ function EditProfile() {
 
   const [name, setName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [pets, setPets] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -17,6 +18,7 @@ function EditProfile() {
       setName(auth.user.name || '');
       setLastName(auth.user.lastname || '');
       setEmail(auth.user.email || '');
+      setPets(auth.user.pets || '');
     }
   }, [auth.user]);
 
@@ -33,6 +35,7 @@ function EditProfile() {
         name,
         lastname: lastName,
         email,
+        pets,
         imageUrl: prevUser.imageUrl,
       };
 
