@@ -78,12 +78,12 @@ function GuestProfile() {
         </div>
       </div>
 
-      <button
+      {/* <button
         onClick={logout}
         className="text-xl font-semibold text-center uppercase text-white bg-gray-800 hover:bg-gray-900 px-6 py-3 mt-8 rounded-lg shadow-md transition-all"
       >
         Logout
-      </button>
+      </button> */}
     </>
   ) : (
     <p className="text-white text-2xl">Loading...</p>
