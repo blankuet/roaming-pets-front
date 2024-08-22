@@ -1,19 +1,20 @@
- import { useState, useContext } from 'react';
- import { AuthContext } from '../../context/AuthContext';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
- function SignUp() {
-   const { signup } = useContext(AuthContext);
-   const [formData, setFormData] = useState({ name: '', email: '', password: '', lastname: '' });
+function SignUp() {
+  const { signup, error } = useContext(AuthContext);
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', lastname: '' });
 
-   const handleChange = (e) => {
-     setFormData({ ...formData, [e.target.name]: e.target.value });
-   };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-   const handleSubmit = (e) => {
-     e.preventDefault();
-     signup(formData.name, formData.email, formData.password, formData.lastname);
-   };
-   return (
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    signup(formData.name, formData.email, formData.password, formData.lastname);
+  };
+
+  return (
     <div 
       className="flex justify-center items-center min-h-screen bg-cover bg-center" 
       style={{ backgroundImage: "url('/public/animals.jpg')" }}
@@ -23,6 +24,11 @@
         className="bg-black bg-opacity-75 p-6 rounded-lg shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold text-center text-white mb-6">Sign Up</h2>
+        {error && (
+          <div className="mb-4 text-red-500 text-center">
+            {error}
+          </div>
+        )}
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-400">Name:</label>
           <input 
@@ -76,9 +82,6 @@
       </form>
     </div>
   );
- }
+}
 
- export default SignUp;
-
-
-// 1-agosto(token) min 20 aprox para sacan el mensaje de error del backend en el Front
+export default SignUp;
