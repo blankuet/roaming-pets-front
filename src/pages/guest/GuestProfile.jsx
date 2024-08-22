@@ -59,6 +59,7 @@ function GuestProfile() {
           <p className="text-xl font-semibold text-white mb-2">Name: {user.name}</p>
           <p className="text-xl font-semibold text-white mb-2">Last Name: {user.lastname}</p>
           <p className="text-xl font-semibold text-white mb-2">Email: {user.email}</p>
+          <p className="text-xl font-semibold text-white mb-2">Number of pets: {user.pets}</p>
           <ImageForm setImage={setProfileImage} />
         </div>
 
@@ -78,12 +79,12 @@ function GuestProfile() {
         </div>
       </div>
 
-      <button
+      {/* <button
         onClick={logout}
         className="text-xl font-semibold text-center uppercase text-white bg-gray-800 hover:bg-gray-900 px-6 py-3 mt-8 rounded-lg shadow-md transition-all"
       >
         Logout
-      </button>
+      </button> */}
     </>
   ) : (
     <p className="text-white text-2xl">Loading...</p>

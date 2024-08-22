@@ -6,6 +6,7 @@ const GuestContext = createContext();
 
 const GuestProvider = ({ children }) => {
   const [auth, setAuth] = useState({ token: null, user: null });
+  const [error, setError] = useState(null); // Estado global para manejar errores
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,67 +18,84 @@ const GuestProvider = ({ children }) => {
 
   const verifyToken = async (token) => {
     try {
-      const response = await fetch("http://localhost:5005/auth/verify", {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/auth/verify`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
         setAuth({ token, user: data });
       } else {
         localStorage.removeItem("token");
+        setError(data.message || "Token verification failed");
       }
     } catch (error) {
       console.error("Error:", error);
       localStorage.removeItem("token");
+      setError(error.message || "An error occurred during token verification");
     }
   };
 
   const login = async (email, password) => {
     try {
-      const response = await fetch("http://localhost:5005/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("token", data.authToken);
+        localStorage.setItem("user", JSON.stringify(data));
         setAuth({ token: data.authToken, user: data });
-        console.log(data);
+        setError(null); // Limpiar errores en caso de éxito
         navigate("/guest/dashboard");
       } else {
-        console.error("Error:", data.message);
+        throw new Error(data.message || "Login failed");
       }
     } catch (error) {
       console.error("Error:", error);
+      setError(error.message || "An error occurred during login");
     }
   };
 
-  const signup = async (name, email, password, pets) => {
+  const signup = async (name, lastname, email, password, pets) => {
     try {
-      const response = await fetch("http://localhost:5005/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, pets }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/auth/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password, lastname, pets }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
         navigate("/guest/login");
+        setError(null); // Limpiar errores en caso de éxito
       } else {
-        console.error("Error:", data.message);
+        throw new Error(data.message || "Signup failed");
       }
     } catch (error) {
       console.error("Error:", error);
+      setError(error.message || "An error occurred during signup");
     }
   };
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setAuth({ token: null, user: null });
+    setError(null); // Limpiar errores al cerrar sesión
     navigate("/guest/login");
   };
 
@@ -102,10 +120,11 @@ const GuestProvider = ({ children }) => {
 
       const data = await response.json();
       setAuth((prevAuth) => ({ ...prevAuth, user: data.user }));
-      console.log("updationg: ", data.user);
       localStorage.setItem("user", JSON.stringify(data.user));
+      setError(null); // Limpiar errores en caso de éxito
     } catch (error) {
       console.error("Error updating user:", error);
+      setError(error.message || "An error occurred during user update");
     }
   };
 

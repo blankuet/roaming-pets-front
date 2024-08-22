@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { GuestContext } from '../../context/GuestContext';
 
 function Login() {
-  const { login } = useContext(GuestContext);
+  const { login, error } = useContext(GuestContext);
   const [formData, setFormData] = useState({ email: '', password: '', userType: 'guest' });
 
   const handleChange = (e) => {
@@ -24,6 +24,11 @@ function Login() {
         className="bg-black bg-opacity-75 p-6 rounded-lg shadow-md w-full max-w-md"
       >
         <h2 className="text-2xl font-bold text-center text-white mb-6">Login</h2>
+        {error && ( // Mostrar mensaje de error si existe
+          <div className="mb-4 text-red-500 text-center">
+            {error}
+          </div>
+        )}
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-400">Email:</label>
           <input 
