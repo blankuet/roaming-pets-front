@@ -14,7 +14,6 @@ function PublicHostProfile() {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/${hostId}`);
         const data = await response.json();
-        console.log(data);
         setHost(data);
         setReviews(data.reviews || []);
       } catch (error) {
@@ -28,7 +27,7 @@ function PublicHostProfile() {
   const handleReviewSubmit = async (newReview) => {
     try {
       //Enviar la review al backend
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/${hostId}/review`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/host/${hostId}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,6 +40,7 @@ function PublicHostProfile() {
       console.error("Error submitting review:", error);
     }
   };
+
   const totalReviews = reviews.length;
   const averageRating = totalReviews > 0 ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / totalReviews : 0;
 
@@ -66,9 +66,9 @@ function PublicHostProfile() {
             </div>
 
             {/* Mostrar la cantidad de reseñas y la media de calificaciones */}
-            <div className="review-summary">
+            <div className="text-lime-200">
               <h3>{totalReviews} Reseñas</h3>
-              <p>Calificación media: {averageRating.toFixed(1)} / 5</p>
+              <p>Average Rating: {averageRating.toFixed(1)} / 5</p>
             </div>
 
             {/* Mostrar las reviews */}
@@ -77,8 +77,13 @@ function PublicHostProfile() {
               {reviews.length > 0 ? (
                 reviews.map((review, index) => (
                   <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
-                    <Rating rating={review.rating} />
-                    <p className="mt-2 text-gray-300">{review.review}</p>
+                    <Rating rating={review.rating || 0} />
+                    {/* Mostrar el comentario de la review */}
+                    {review.review ? (
+                      <p className="mt-2 text-gray-300">{review.review}</p>
+                    ) : (
+                      <p className="mt-2 text-gray-400">No comment provided.</p>
+                    )}
                   </div>
                 ))
               ) : (
@@ -87,7 +92,7 @@ function PublicHostProfile() {
             </div>
 
             {/* Nueva review */}
-            <div className="mt-6">
+            <div className="text-lime-200 mt-6">
               <RatingWithReview onSubmit={handleReviewSubmit} />
             </div>
           </div>

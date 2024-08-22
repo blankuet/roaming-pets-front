@@ -1,6 +1,6 @@
 import { PropTypes } from "prop-types";
 
-function Rating({ rating, maxRating = 5, onRatingChange }) {
+function Rating({ rating = 0, maxRating = 5, onRatingChange }) {
   const roundedRating = Math.round(rating);
   const stars = [];
 

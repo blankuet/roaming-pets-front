@@ -9,6 +9,8 @@ function RatingWithReview({ initialRating, initialReview, onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ rating, review });
+    setRating(0);
+    setReview("");
   };
 
   return (
@@ -22,7 +24,7 @@ function RatingWithReview({ initialRating, initialReview, onSubmit }) {
           value={review}
           onChange={(e) => setReview(e.target.value)}
           placeholder="Leave a review"
-          className="w-full p-2 border border-gray-300 rounded"
+          className="w-full bg-gray-800 text-gray-300 p-2 rounded-lg focus:outline-none focus:ring focus:border-lime-300"
           rows="4"
         />
       </div>
