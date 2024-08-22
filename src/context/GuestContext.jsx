@@ -81,8 +81,60 @@ const GuestProvider = ({ children }) => {
     navigate('/guest/login');
   };
 
+  const updateUser = async (updatedUser) => {
+    console.log(updatedUser)
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/guest/update`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${auth.token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUser),
+      });
+
+
+      if (!response.ok) {
+        throw new Error('Failed to update user');
+      }
+
+      const data = await response.json();
+      setAuth(prevAuth => ({ ...prevAuth, user: data.user }));
+      console.log('updationg: ', data.user)
+      localStorage.setItem('user', JSON.stringify(data.user));
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
+  };
+
+  const deleteUser = async (userId) => {
+  try {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/guest/delete`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${auth.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId }),
+    });
+
+    if (response.ok) {
+      // Si la eliminación es exitosa, actualiza el estado
+      setAuth({ token: null, user: null });
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      navigate('/guest/login');
+    } else {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Failed to delete user');
+    }
+  } catch (error) {
+    console.error('Error deleting user:', error);
+  }
+};
+
   return (
-    <GuestContext.Provider value={{ auth, login, signup, logout }}>
+    <GuestContext.Provider value={{ auth, login, signup, logout, deleteUser, updateUser }}>
       {children}
     </GuestContext.Provider>
   );
