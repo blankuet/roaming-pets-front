@@ -59,6 +59,7 @@ function GuestProfile() {
           <p className="text-xl font-semibold text-white mb-2">Name: {user.name}</p>
           <p className="text-xl font-semibold text-white mb-2">Last Name: {user.lastname}</p>
           <p className="text-xl font-semibold text-white mb-2">Email: {user.email}</p>
+          <p className="text-xl font-semibold text-white mb-2">Number of pets: {user.pets}</p>
           <ImageForm setImage={setProfileImage} />
         </div>
 

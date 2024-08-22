@@ -2,8 +2,8 @@ import { useState, useContext } from 'react';
 import { GuestContext } from '../../context/GuestContext';
 
 function SignUp() {
-  const { signup } = useContext(GuestContext);
-  const [formData, setFormData] = useState({ name: '', email: '', password: '', pets: 0 });
+  const { signup, error } = useContext(GuestContext);
+  const [formData, setFormData] = useState({ name: '', lastname: '', email: '', password: '', pets: 0 });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -11,8 +11,7 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
-    signup(formData.name, formData.email, formData.password, +formData.pets);
+    signup(formData.name, formData.lastname, formData.email, formData.password, +formData.pets);
   };
   return (
    <div 
@@ -24,6 +23,11 @@ function SignUp() {
        className="bg-black bg-opacity-75 p-6 rounded-lg shadow-md w-full max-w-md"
      >
        <h2 className="text-2xl font-bold text-center text-white mb-6">Sign Up</h2>
+       {error && (
+          <div className="mb-4 text-red-500 text-center">
+            {error}
+          </div>
+        )}
        <div className="mb-4">
          <label htmlFor="name" className="block text-gray-400">Name:</label>
          <input 
@@ -35,6 +39,17 @@ function SignUp() {
            className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
          />
        </div>
+       <div className="mb-4">
+          <label htmlFor="lastname" className="block text-gray-400">Last Name:</label>
+          <input 
+            type="text" 
+            name="lastname" 
+            placeholder="Last name" 
+            onChange={handleChange} 
+            required 
+            className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
        <div className="mb-4">
          <label htmlFor="email" className="block text-gray-400">Email:</label>
          <input 
