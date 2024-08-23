@@ -23,7 +23,6 @@ import HostProfile from "./pages/Host/HostProfile.jsx";
 import EditProfile from "./pages/Host/EditProfile.jsx";
 import GuestProfile from "./pages/guest/GuestProfile.jsx";
 import GuestEditProfile from "./pages/guest/EditProfile.jsx";
-import Booking from "./pages/Booking.jsx";
 import PublicHostProfile from "./pages/Host/PublicHostProfile.jsx";
 
 function App() {

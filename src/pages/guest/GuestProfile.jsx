@@ -44,7 +44,7 @@ function GuestProfile() {
   {auth.user ? (
     <>
       <h1 className="text-5xl font-bold text-white text-center mb-6 w-full drop-shadow-lg">
-        Welcome, {auth.user.name}
+        Welcome, {user.name}
       </h1>
 
       <div className="bg-black bg-opacity-80 rounded-lg shadow-lg p-6 max-w-lg w-full">
