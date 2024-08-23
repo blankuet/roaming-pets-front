@@ -24,6 +24,7 @@ import EditProfile from "./pages/Host/EditProfile.jsx";
 import GuestProfile from "./pages/guest/GuestProfile.jsx";
 import GuestEditProfile from "./pages/guest/EditProfile.jsx";
 import PublicHostProfile from "./pages/Host/PublicHostProfile.jsx";
+import PublicGuestProfile from "./pages/guest/PublicGuestProfile.jsx";
 
 function App() {
   return (
@@ -196,6 +197,16 @@ function App() {
                 <HostNavbar />
                 <GuestEditProfile />
               </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/guest/:guestId"
+            element={
+              <>
+                <GuestNavbar />
+                <PublicGuestProfile />
+              </>
             }
           />
 
