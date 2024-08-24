@@ -18,7 +18,7 @@ function EditProfile() {
       setName(auth.user.name || "");
       setLastName(auth.user.lastname || "");
       setEmail(auth.user.email || "");
-      setPets(auth.user.pets || "");
+      setPets(auth.user.pets || +"");
     }
   }, [auth.user]);
 
@@ -43,7 +43,9 @@ function EditProfile() {
       const user = JSON.parse(userFromStorage);
       console.log(user);
 
-      await updateUser(updatedUser);
+      const response = await updateUser(updatedUser);
+      if (response.status === 200) {
+      console.log(updatedUser);
       setSuccess("Profile updated successfully!");
 
       localStorage.setItem("user", JSON.stringify(updatedUser));
@@ -51,6 +53,9 @@ function EditProfile() {
       setTimeout(() => {
         navigate("/guest/profile");
       }, 2000);
+    } else {
+      setError(response.error);
+    }
     } catch (error) {
       console.error("Error updating profile:", error);
       setError("Failed to update profile. Please try again.");
@@ -105,6 +110,18 @@ function EditProfile() {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-gray-700">
+            Number of pets
+          </label>
+          <input
+            type="number"
+            id="numberOfPets"
+            value={pets}
+            onChange={(e) => setPets(e.target.value)}
             className="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>

@@ -6,7 +6,7 @@ import ImageForm from '../../components/ImageForm';
 function GuestProfile() {
   const { auth, logout, deleteUser } = useContext(GuestContext);
   const [user, setUser] = useState({});
-  const [profileImage, setProfileImage] = useState('');
+  const [profileImage, setProfileImage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function GuestProfile() {
   {auth.user ? (
     <>
       <h1 className="text-5xl font-bold text-white text-center mb-6 w-full drop-shadow-lg">
-        Welcome, {user.name}
+        Welcome, {auth.user.name}
       </h1>
 
       <div className="bg-black bg-opacity-80 rounded-lg shadow-lg p-6 max-w-lg w-full">
@@ -60,7 +60,7 @@ function GuestProfile() {
           <p className="text-xl font-semibold text-lime-200 mb-2">Last Name: {user.lastname}</p>
           <p className="text-xl font-semibold text-lime-200 mb-2">Email: {user.email}</p>
           <p className="text-xl font-semibold text-lime-200 mb-2">Number of pets: {user.pets}</p>
-          <ImageForm setImage={setProfileImage} />
+          <ImageForm setImage={setProfileImage} userType="guest" />
         </div>
 
         <div className="flex justify-around w-full mt-4">
