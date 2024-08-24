@@ -51,7 +51,7 @@ function HostDashboard() {
               </button>
               <button
                 className="bg-yellow-500 text-white p-4 rounded-lg shadow-md flex flex-col items-center justify-center hover:bg-yellow-600 transition"
-                onClick={() => { logout();navigate("/") }}
+                onClick={() => { logout(); navigate("/") }}
               >
                 <FaHome className="text-3xl mb-2" />
                 Want to be a Guest?

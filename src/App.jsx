@@ -25,6 +25,8 @@ import GuestProfile from "./pages/guest/GuestProfile.jsx";
 import GuestEditProfile from "./pages/guest/EditProfile.jsx";
 import PublicHostProfile from "./pages/Host/PublicHostProfile.jsx";
 import PublicGuestProfile from "./pages/guest/PublicGuestProfile.jsx";
+import GuestPrivateRoute from "./components/GuestPrivateRoute.jsx";
+import Booking from "./pages/Booking.jsx";
 
 function App() {
   return (
@@ -37,6 +39,65 @@ function App() {
               <>
                 <GuestNavbar />
                 <GuestHome />
+              </>
+            }
+          />
+          <Route
+            path="/guest/signup"
+            element={
+              <>
+                <GuestNavbar />
+                <GuestSignUp />
+              </>
+            }
+          />
+
+          <Route
+            path="/guest/login"
+            element={
+              <>
+                <GuestNavbar />
+                <GuestLogin />
+              </>
+            }
+          />
+
+          <Route
+            path="/guest/dashboard"
+            element={
+              <GuestPrivateRoute>
+                <GuestNavbar />
+                <GuestDashboard />
+              </GuestPrivateRoute>
+            }
+          />
+
+          <Route
+            path="/guest/profile"
+            element={
+              <GuestPrivateRoute>
+                <GuestNavbar />
+                <GuestProfile />
+              </GuestPrivateRoute>
+            }
+          />
+
+          <Route
+            path="/guest/edit-profile"
+            element={
+              <GuestPrivateRoute>
+                <HostNavbar />
+                <GuestEditProfile />
+              </GuestPrivateRoute>
+            }
+          />
+
+          <Route
+            path="/guest/:guestId"
+            element={
+              <>
+                <GuestNavbar />
+                <PublicGuestProfile />
               </>
             }
           />
@@ -62,41 +123,11 @@ function App() {
           />
 
           <Route
-            path="/host/accommodation"
+            path="/guest/bookings"
             element={
               <>
-                <HostNavbar />
-                <AccommodationHost />
-              </>
-            }
-          />
-
-          <Route
-            path="/host/accommodation/edit/:accommodationId"
-            element={
-              <>
-                <HostNavbar />
-                <AccommodationEditHost />
-              </>
-            }
-          />
-
-          <Route
-            path="/host/accommodation/details/:accommodationId"
-            element={
-              <>
-                <HostNavbar />
-                <AccommodationDetailsHost />
-              </>
-            }
-          />
-
-          <Route
-            path="/host/bookings"
-            element={
-              <>
-                <HostNavbar />
-                <BookingHost />
+                <GuestNavbar />
+                <Booking />
               </>
             }
           />
@@ -142,75 +173,6 @@ function App() {
           />
 
           <Route
-            path="/guest"
-            element={
-              <>
-                <GuestNavbar />
-              </>
-            }
-          />
-
-          <Route
-            path="/guest/signup"
-            element={
-              <>
-                <GuestNavbar />
-                <GuestSignUp />
-              </>
-            }
-          />
-
-          <Route
-            path="/guest/login"
-            element={
-              <>
-                <GuestNavbar />
-                <GuestLogin />
-              </>
-            }
-          />
-
-          <Route
-            path="/guest/dashboard"
-            element={
-              <PrivateRoute>
-                <GuestNavbar />
-                <GuestDashboard />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/guest/profile"
-            element={
-              <PrivateRoute>
-                <GuestNavbar />
-                <GuestProfile />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/guest/edit-profile"
-            element={
-              <PrivateRoute>
-                <HostNavbar />
-                <GuestEditProfile />
-              </PrivateRoute>
-            }
-          />
-
-          <Route
-            path="/guest/:guestId"
-            element={
-              <>
-                <GuestNavbar />
-                <PublicGuestProfile />
-              </>
-            }
-          />
-
-          <Route
             path="/host/profile"
             element={
               <PrivateRoute>
@@ -236,6 +198,46 @@ function App() {
               <>
                 <GuestNavbar />
                 <PublicHostProfile />
+              </>
+            }
+          />
+
+          <Route
+            path="/host/accommodation"
+            element={
+              <>
+                <HostNavbar />
+                <AccommodationHost />
+              </>
+            }
+          />
+
+          <Route
+            path="/host/accommodation/edit/:accommodationId"
+            element={
+              <>
+                <HostNavbar />
+                <AccommodationEditHost />
+              </>
+            }
+          />
+
+          <Route
+            path="/host/accommodation/details/:accommodationId"
+            element={
+              <>
+                <HostNavbar />
+                <AccommodationDetailsHost />
+              </>
+            }
+          />
+
+          <Route
+            path="/host/bookings"
+            element={
+              <>
+                <HostNavbar />
+                <BookingHost />
               </>
             }
           />

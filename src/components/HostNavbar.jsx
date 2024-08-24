@@ -35,7 +35,7 @@ function HostNavbar() {
             Accommodations
           </NavLink>
           <NavLink
-            to="/host/booking"
+            to="/host/bookings"
             className={({ isActive }) =>
               `text-lg ${isActive ? "text-indigo-600" : "text-slate-200"}`
             }
