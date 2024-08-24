@@ -27,7 +27,7 @@ function GuestNavbar() {
       {auth.user && (
         <div className="flex-1 flex justify-center space-x-4">
           <NavLink
-            to="/host/accommodation"
+            to="/guest/accommodation"
             className={({ isActive }) =>
               `text-lg ${isActive ? "text-indigo-600" : "text-slate-200"}`
             }
@@ -35,7 +35,7 @@ function GuestNavbar() {
             Accommodations
           </NavLink>
           <NavLink
-            to="/host/booking"
+            to="/guest/bookings"
             className={({ isActive }) =>
               `text-lg ${isActive ? "text-indigo-600" : "text-slate-200"}`
             }

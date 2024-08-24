@@ -5,9 +5,9 @@ const PrivateRoute = ({ children }) => {
   // const { auth } = useContext(AuthContext);
   const token = localStorage.getItem('token');
   return token ? (
-    children === "/host/login" ? <Navigate to="/host/dashboard" /> : children
+    children === "/guest/login" ? <Navigate to="/guest/dashboard" /> : children
   ) : (
-    <Navigate to="/host/login" />
+    <Navigate to="/guest/login" />
   );
 };
 
@@ -16,6 +16,3 @@ PrivateRoute.propTypes = {
 };
 
 export default PrivateRoute;
-
-
-
