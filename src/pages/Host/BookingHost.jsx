@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function BookingHost() {
   const [bookings, setBookings] = useState([]);
@@ -6,7 +6,7 @@ function BookingHost() {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await fetch("http://localhost:5005/api/booking/host", {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/host`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

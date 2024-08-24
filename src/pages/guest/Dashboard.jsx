@@ -55,7 +55,7 @@ function GuestDashboard() {
               </button>
               <button
                 className="bg-yellow-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-yellow-600 transition"
-                onClick={() => navigate("/host/signup")}
+                onClick={() => { logout(); navigate("/host/signup") }}
               >
                 <FaHome className="text-4xl mb-3" />
                 Want to be a Host?
