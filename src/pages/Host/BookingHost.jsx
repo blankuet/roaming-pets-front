@@ -5,8 +5,10 @@ function BookingHost() {
 
   useEffect(() => {
     const fetchBookings = async () => {
+      const user = localStorage.getItem("user");
+      const userInJSON = JSON.parse(user);
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/host`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/host/${userInJSON._id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

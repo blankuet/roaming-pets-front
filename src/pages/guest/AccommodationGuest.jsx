@@ -40,6 +40,7 @@ function AccommodationGuest() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const user = JSON.parse(localStorage.getItem("user"));
     try {
       const response = await fetch("http://localhost:5005/api/booking", {
         method: "POST",
@@ -49,6 +50,7 @@ function AccommodationGuest() {
         body: JSON.stringify({
           ...bookingDetails,
           accommodationId: selectedAccommodation,
+          guestId: user._id,
         }),
       });
       if (!response.ok) {
@@ -56,7 +58,7 @@ function AccommodationGuest() {
       }
       const data = await response.json();
       console.log("Booking created:", data);
-      navigate("/");
+      navigate("/guest/bookings");
     } catch (error) {
       console.error("Error creating booking:", error);
     }
