@@ -114,7 +114,7 @@ const GuestProvider = ({ children }) => {
         }
       );
 
-      if (!response.ok) {
+      if (!response.ok || response.status !== 200) {
         throw new Error("Failed to update user");
       }
 
@@ -122,9 +122,10 @@ const GuestProvider = ({ children }) => {
       setAuth((prevAuth) => ({ ...prevAuth, user: data.user }));
       localStorage.setItem("user", JSON.stringify(data.user));
       setError(null); // Limpiar errores en caso de éxito
+      return {status: 200, user: data.user};
     } catch (error) {
       console.error("Error updating user:", error);
-      setError(error.message || "An error occurred during user update");
+      return {status: 500, error: error.message};
     }
   };
 

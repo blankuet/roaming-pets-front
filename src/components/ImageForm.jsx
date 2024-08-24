@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { AuthContext } from "../context/AuthContext";
 
-const ImageForm = ({ setImage }) => {
+const ImageForm = ({ setImage, userType }) => {
   const preset_name = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
   const cloud_name = import.meta.env.VITE_CLOUDINARY_NAME;
   const [loading, setLoading] = useState(false);
@@ -41,8 +41,11 @@ const ImageForm = ({ setImage }) => {
 
       const file = await response.json();
       console.log(file);
+      let addImage
 
-      const addImage = await fetch(
+      if(userType === "host") {
+
+      addImage = await fetch(
         `${import.meta.env.VITE_API_URL}/auth/host/upload`,
         {
           method: "POST",
@@ -55,7 +58,23 @@ const ImageForm = ({ setImage }) => {
             Authorization: `Bearer ${token}`,
           },
         }
-      );
+      );}
+      else {
+        addImage = await fetch(
+          `${import.meta.env.VITE_API_URL}/auth/guest/upload`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              imageUrl: file.secure_url,
+              user,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      }
       const finalRes = await addImage.json();
       console.log(finalRes);
       const userFromStorage = localStorage.getItem("user");

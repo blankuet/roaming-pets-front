@@ -66,7 +66,7 @@ function HostProfile() {
               <p className="text-xl font-semibold text-lime-200 mb-2">
                 Email: {user.email}
               </p>
-              <ImageForm setImage={setProfileImage} />
+              <ImageForm setImage={setProfileImage} userType="host" />
             </div>
 
             <div className="flex justify-around w-full mt-4">
