@@ -1,34 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import RatingWithReview from "../../components/RatingWithReview";
 import Rating from "../../components/Rating";
 
-function AccommodationDetailsGuest() {
-  const { accommodationId } = useParams();
-  const [accommodation, setAccommodation] = useState(null);
+function PublicGuestProfile() {
+  const { guestId } = useParams();
+  const [guest, setHost] = useState(null);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    const fetchAccommodationDetails = async () => {
+    //Obtener los datos del host y sus reviews desde el backend
+    const fetchHostData = async () => {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}`
-        );
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/${guestId}`);
         const data = await response.json();
-        setAccommodation(data);
+        setHost(data);
         setReviews(data.reviews || []);
       } catch (error) {
-        console.error("Error fetching accommodation details:", error);
+        console.error("Error fetching host data:", error);
       }
     };
 
-    fetchAccommodationDetails();
-  }, [accommodationId]);
+    fetchHostData();
+  }, [guestId]);
 
   const handleReviewSubmit = async (newReview) => {
     try {
       //Enviar la review al backend
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}/reviews`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/${guestId}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,42 +44,29 @@ function AccommodationDetailsGuest() {
   const totalReviews = reviews.length;
   const averageRating = totalReviews > 0 ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / totalReviews : 0;
 
-  if (!accommodation) {
-    return <div className="text-white text-center">Loading...</div>;
-  }
-
   return (
-    <div
-      className="min-h-screen flex items-center justify-center bg-gray-900"
-      style={{ backgroundImage: "url('/public/animals.jpg')" }}
-    >
-      <div className="w-full max-w-2xl p-6 bg-black bg-opacity-75 rounded-lg shadow-md text-white">
-        <h1 className="text-3xl font-bold mb-4">{accommodation.name}</h1>
-        <p className="mb-2">
-          <strong>Address:</strong> {accommodation.address}
-        </p>
-        <p className="mb-2">
-          <strong>Price per Night:</strong> ${accommodation.price}
-        </p>
-        <p className="mb-2">
-          <strong>Max Persons:</strong> {accommodation.maxPersons}
-        </p>
-        <p className="mb-4">
-          <strong>Description:</strong> {accommodation.description}
-        </p>
+    <div className="flex flex-col justify-start items-center min-h-screen bg-cover bg-center p-6"
+      style={{ backgroundImage: "url('/public/animals.jpg')" }}>
 
-        <div className="grid grid-cols-2 gap-4">
-          {accommodation.images?.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={`Image ${index + 1}`}
-              className="rounded-lg"
-            />
-          ))}
-        </div>
-        {/* Mostrar la cantidad de reseñas y la media de calificaciones */}
-        <div className="text-lime-200">
+      {guest ? (
+        <>
+          <h1 className="text-5xl font-bold text-lime-200 text-center mb-6 w-full">{guest.name} {guest.lastname}</h1>
+          <div className="bg-black bg-opacity-80 rounded-lg shadow-lg p-6 max-w-lg w-full">
+            <div className="flex flex-col items-center mb-6">
+              {guest.profileImage && (
+                <img
+                  src={guest.profileImage.replace("/upload/", "/upload/w_300/")}
+                  alt="Profile"
+                  className="w-32 h-32 rounded-full object-cover mb-4 shadow-md"
+                />
+              )}
+              <p className="text-xl font-semibold text-lime-200 mb-2">Name: {guest.name}</p>
+              <p className="text-xl font-semibold text-lime-200 mb-2">Last Name: {guest.lastname}</p>
+              <p className="text-xl font-semibold text-lime-200 mb-2">Email: {guest.email}</p>
+            </div>
+
+            {/* Mostrar la cantidad de reseñas y la media de calificaciones */}
+            <div className="text-lime-200">
               <h3>{totalReviews} Reseñas</h3>
               <p>Average Rating: {averageRating.toFixed(1)} / 5</p>
             </div>
@@ -109,9 +95,13 @@ function AccommodationDetailsGuest() {
             <div className="text-lime-200 mt-6">
               <RatingWithReview onSubmit={handleReviewSubmit} />
             </div>
-      </div>
+          </div>
+        </>
+      ) : (
+        <p className="text-lime-200">Loading...</p>
+      )}
     </div>
   );
 }
 
-export default AccommodationDetailsGuest;
+export default PublicGuestProfile;

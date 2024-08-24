@@ -23,8 +23,8 @@ import HostProfile from "./pages/Host/HostProfile.jsx";
 import EditProfile from "./pages/Host/EditProfile.jsx";
 import GuestProfile from "./pages/guest/GuestProfile.jsx";
 import GuestEditProfile from "./pages/guest/EditProfile.jsx";
-import Booking from "./pages/Booking.jsx";
 import PublicHostProfile from "./pages/Host/PublicHostProfile.jsx";
+import PublicGuestProfile from "./pages/guest/PublicGuestProfile.jsx";
 
 function App() {
   return (
@@ -201,6 +201,16 @@ function App() {
           />
 
           <Route
+            path="/guest/:guestId"
+            element={
+              <>
+                <GuestNavbar />
+                <PublicGuestProfile />
+              </>
+            }
+          />
+
+          <Route
             path="/host/profile"
             element={
               <PrivateRoute>
@@ -236,3 +246,5 @@ function App() {
 }
 
 export default App;
+
+//hola

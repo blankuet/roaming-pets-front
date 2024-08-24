@@ -159,7 +159,7 @@ const GuestProvider = ({ children }) => {
 
   return (
     <GuestContext.Provider
-      value={{ auth, login, signup, logout, deleteUser, updateUser }}
+      value={{ auth, login, signup, logout, deleteUser, updateUser, error }}
     >
       {children}
     </GuestContext.Provider>
