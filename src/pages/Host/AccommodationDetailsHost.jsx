@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ImageFormAccommodation from "../../components/ImageFormAccommodation";
 
@@ -20,6 +20,7 @@ function AccommodationDetailsHost() {
           }
         );
         const data = await response.json();
+        console.log(data);
         setAccommodation(data);
       } catch (error) {
         console.error("Error fetching accommodation details:", error);
@@ -62,6 +63,7 @@ function AccommodationDetailsHost() {
       images: newImages,
     }));
     setShowImageForm(false);
+    location.reload()
   };
 
   if (!accommodation) {

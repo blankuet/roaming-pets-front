@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 
 const ImageFormAccommodation = ({ accommodationId, onSave }) => {
@@ -45,7 +45,7 @@ const ImageFormAccommodation = ({ accommodationId, onSave }) => {
       const response = await fetch(
         `http://localhost:5005/api/accommodation/${accommodationId}/images`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
