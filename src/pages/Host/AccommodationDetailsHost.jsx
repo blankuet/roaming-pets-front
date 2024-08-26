@@ -88,6 +88,9 @@ function AccommodationDetailsHost() {
         <p className="text-gray-300 mb-2">
           <strong>Max Persons:</strong> {accommodation.maxPersons}
         </p>
+        <p className="text-gray-300 mb-2">
+          <strong>City:</strong> {accommodation.city}
+        </p>
         <p className="text-gray-300 mb-4">
           <strong>Description:</strong> {accommodation.description}
         </p>
