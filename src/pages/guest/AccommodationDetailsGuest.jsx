@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import RatingWithReview from "../../components/RatingWithReview";
 import Rating from "../../components/Rating";
-import {Link } from "react-router-dom";
 
 function AccommodationDetailsGuest() {
   const { accommodationId } = useParams();
@@ -143,18 +142,18 @@ function AccommodationDetailsGuest() {
         </div>
 
         {/* Enlace al perfil del host */}
-        {accommodation.host && (
+        {accommodation.hostId && (
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-lime-200">Host</h3>
             <p>
-              <strong>Name:</strong> {accommodation.host.name}
+              <strong>Name:</strong> 
+              <Link
+                to={`/host/${accommodation.hostId._id}`} // Enlace dinámico con ID del host
+                className="text-indigo-400 hover:text-indigo-600 transition duration-300"
+              >
+                {accommodation.hostId.name}
+              </Link>
             </p>
-            <Link
-              to={`/host/:id`}
-              className="text-indigo-400 hover:text-indigo-600 transition duration-300"
-            >
-              View Host Profile
-            </Link>
           </div>
         )}
 
