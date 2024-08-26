@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const AccommodationEditHost = () => {
@@ -114,7 +114,7 @@ const AccommodationEditHost = () => {
 
       console.log("Accommodation updated successfully");
 
-      navigate("/host/accommodation");
+      navigate(`/host/accommodation/details/${accommodationId}`);
     } catch (error) {
       console.error(error);
     }

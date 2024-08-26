@@ -26,7 +26,7 @@ import GuestEditProfile from "./pages/guest/EditProfile.jsx";
 import PublicHostProfile from "./pages/Host/PublicHostProfile.jsx";
 import PublicGuestProfile from "./pages/guest/PublicGuestProfile.jsx";
 import GuestPrivateRoute from "./components/GuestPrivateRoute.jsx";
-import Bookings from "./pages/Bookings.jsx";
+import Booking from "./pages/Booking.jsx";
 
 function App() {
   return (
@@ -127,7 +127,7 @@ function App() {
             element={
               <>
                 <GuestNavbar />
-                <Bookings />
+                <Booking />
               </>
             }
           />
