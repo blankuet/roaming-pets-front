@@ -7,6 +7,7 @@ const AccommodationEditHost = () => {
     address: "",
     price: "",
     maxPersons: "",
+    city: "",
     description: "",
     images: [],
   });
@@ -30,6 +31,7 @@ const AccommodationEditHost = () => {
           address: data.address,
           price: data.price,
           maxPersons: data.maxPersons,
+          city: data.city,
           description: data.description,
           images: data.images || [],
         });
@@ -187,6 +189,20 @@ const AccommodationEditHost = () => {
               name="maxPersons"
               placeholder="Max Persons"
               value={formValues.maxPersons}
+              onChange={handleChange}
+              required
+              className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="city" className="block text-gray-400">
+              City:
+            </label>
+            <input
+              type="text"
+              name="city"
+              placeholder="City"
+              value={formValues.city}
               onChange={handleChange}
               required
               className="mt-1 w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
