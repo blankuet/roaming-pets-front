@@ -5,7 +5,7 @@ function Home() {
     <>
       <div
         className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center"
-        style={{ backgroundImage: "url('/public/animals.jpg')" }}
+        style={{ backgroundImage: "url('/animals.jpg')" }}
       >
         {/* Title container */}
         <h1 className="text-4xl font-bold text-white mb-12">
