@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function Bookings() {
   const [bookings, setBookings] = useState([]);
@@ -30,8 +31,14 @@ function Bookings() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gray-900"
-      style={{ backgroundImage: "url('/public/animals.jpg')" }}
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/public/animals.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#f0f0f0",
+      }}
     >
       <div className="w-full max-w-4xl p-6 bg-black bg-opacity-75 rounded-lg shadow-md text-white">
         <h1 className="text-3xl font-bold mb-4 text-center">
@@ -48,7 +55,9 @@ function Bookings() {
             return (
               <li key={booking._id} className="mb-4 p-4 bg-gray-800 rounded-lg">
                 <h2 className="text-2xl font-bold mb-2">
-                  {booking.accommodation.name}
+                  <Link to={`/guest/accommodation/${booking.accommodation._id}`} classNAme="text-blu-400 hover:underline">
+                    {booking.accommodation.name}
+                  </Link>
                 </h2>
                 <p>
                   <strong>Date From:</strong> {dateFrom.toLocaleDateString()}

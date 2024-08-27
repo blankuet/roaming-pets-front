@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function BookingHost() {
   const [bookings, setBookings] = useState([]);
@@ -25,8 +26,14 @@ function BookingHost() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gray-900"
-      style={{ backgroundImage: "url('/public/animals.jpg')" }}
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/public/animals.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#f0f0f0",
+      }}
     >
       <div className="w-full max-w-4xl p-6 bg-black bg-opacity-75 rounded-lg shadow-md text-white">
         <h1 className="text-3xl font-bold mb-4 text-center">Your Bookings</h1>
@@ -37,7 +44,16 @@ function BookingHost() {
                 {booking.accommodation.name}
               </h2>
               <p>
-                <strong>Guest Email:</strong> {booking.guestEmail}
+                <strong>Guest Name:</strong>{" "}
+                <Link
+                  to={`/guest/${booking.guestId._id}`}
+                  className="text-blue-400 hover:underline"
+                >
+                  {booking.guestId.name}
+                </Link>
+              </p>
+              <p>
+                <strong>Guest Email:</strong> {booking.guestId.email}
               </p>
               <p>
                 <strong>Date From:</strong>{" "}
