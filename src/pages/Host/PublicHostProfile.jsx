@@ -45,8 +45,16 @@ function PublicHostProfile() {
   const averageRating = totalReviews > 0 ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / totalReviews : 0;
 
   return (
-    <div className="flex flex-col justify-start items-center min-h-screen bg-cover bg-center p-6"
-      style={{ backgroundImage: "url('/public/animals.jpg')" }}>
+    <div
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/public/animals.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#f0f0f0",
+      }}
+    >
 
       {host ? (
         <>

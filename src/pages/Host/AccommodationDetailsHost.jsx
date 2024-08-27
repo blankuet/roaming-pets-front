@@ -72,8 +72,14 @@ function AccommodationDetailsHost() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gray-900"
-      style={{ backgroundImage: "url('/public/animals.jpg')" }}
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/public/animals.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#f0f0f0",
+      }}
     >
       <div className="w-full max-w-md bg-black bg-opacity-75 p-6 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold text-white mb-6 text-center">

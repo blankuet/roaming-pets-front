@@ -20,8 +20,14 @@ function Login() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center"
-      style={{ backgroundImage: "url('/public/animals.jpg')" }}
+      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+    style={{
+      backgroundImage: "url('/public/animals.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundColor: "#f0f0f0",
+    }}
     >
       <form
         onSubmit={handleSubmit}

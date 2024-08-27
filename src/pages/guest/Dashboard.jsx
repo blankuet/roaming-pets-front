@@ -41,7 +41,7 @@ function GuestDashboard() {
               </button>
               <button
                 className="bg-green-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-green-600 transition"
-                onClick={() => navigate("/bookings")}
+                onClick={() => navigate("/guest/bookings")}
               >
                 <FaClipboardList className="text-4xl mb-3" />
                 Your Bookings
