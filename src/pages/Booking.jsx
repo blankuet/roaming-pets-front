@@ -49,14 +49,16 @@ function Bookings() {
             const dateFrom = new Date(booking.dateFrom);
             const dateTo = new Date(booking.dateTo);
             const totalDays = (dateTo - dateFrom) / (1000 * 3600 * 24);
-            const price = Number(booking.accommodation.price) || 0;
+
+            // Check if booking.accommodation exists and has a price
+            const price = booking.accommodation?.price ? Number(booking.accommodation.price) : 0;
             const totalPrice = totalDays > 0 ? price * totalDays : 0;
 
             return (
               <li key={booking._id} className="mb-4 p-4 bg-gray-800 rounded-lg">
                 <h2 className="text-2xl font-bold mb-2">
-                  <Link to={`/guest/accommodation/${booking.accommodation._id}`} classNAme="text-blu-400 hover:underline">
-                    {booking.accommodation.name}
+                  <Link to={`/guest/accommodation/${booking.accommodation?._id}`} className="text-blue-400 hover:underline">
+                    {booking.accommodation?.name || "Unknown Accommodation"}
                   </Link>
                 </h2>
                 <p>
