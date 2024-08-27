@@ -17,7 +17,7 @@ const AccommodationEditHost = () => {
     const fetchAccommodationDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5005/api/accommodation/${accommodationId}`,
+          `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -97,7 +97,7 @@ const AccommodationEditHost = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5005/api/accommodation/${accommodationId}`,
+        `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}`,
         {
           method: "PUT",
           headers: {

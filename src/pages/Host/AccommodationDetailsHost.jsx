@@ -12,7 +12,7 @@ function AccommodationDetailsHost() {
     const fetchAccommodationDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5005/api/accommodation/${accommodationId}`,
+          `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -33,7 +33,7 @@ function AccommodationDetailsHost() {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5005/api/accommodation/${accommodationId}`,
+        `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}`,
         {
           method: "DELETE",
           headers: {
