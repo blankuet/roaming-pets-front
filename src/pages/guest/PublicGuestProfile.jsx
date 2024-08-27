@@ -45,21 +45,18 @@ function PublicGuestProfile() {
   const averageRating = totalReviews > 0 ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / totalReviews : 0;
 
   return (
-    <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+     <div
+      className="flex justify-center items-center min-h-screen bg-cover bg-center"
       style={{
         backgroundImage: "url('/public/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundColor: "#f0f0f0",
       }}
     >
-
       {guest ? (
-        <>
-          <h1 className="text-5xl font-bold text-lime-200 text-center mb-6 w-full">{guest.name} {guest.lastname}</h1>
-          <div className="bg-black bg-opacity-80 rounded-lg shadow-lg p-6 max-w-lg w-full">
+        <div className="flex flex-col items-center w-full max-w-lg">
+          <h1 className="text-5xl font-bold text-lime-200 text-center mb-6">{guest.name} {guest.lastname}</h1>
+          <div className="bg-black bg-opacity-80 rounded-lg shadow-lg p-6 w-full">
             <div className="flex flex-col items-center mb-6">
               {guest.profileImage && (
                 <img
@@ -74,14 +71,14 @@ function PublicGuestProfile() {
             </div>
 
             {/* Mostrar la cantidad de reseñas y la media de calificaciones */}
-            <div className="text-lime-200">
-              <h3>{totalReviews} Reseñas</h3>
+            <div className="text-lime-200 text-center mb-4">
+              <h3>{totalReviews} Reviews</h3>
               <p>Average Rating: {averageRating.toFixed(1)} / 5</p>
             </div>
 
             {/* Mostrar las reviews */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-lime-200">Reviews</h3>
+              <h3 className="text-lg font-semibold text-lime-200 text-center">Reviews</h3>
               {reviews.length > 0 ? (
                 reviews.map((review, index) => (
                   <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
@@ -95,7 +92,7 @@ function PublicGuestProfile() {
                   </div>
                 ))
               ) : (
-                <p className="text-gray-300">No reviews yet.</p>
+                <p className="text-gray-300 text-center">No reviews yet.</p>
               )}
             </div>
 
@@ -104,7 +101,7 @@ function PublicGuestProfile() {
               <RatingWithReview onSubmit={handleReviewSubmit} />
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <p className="text-lime-200">Loading...</p>
       )}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 function AccommodationGuest() {
   const [accommodations, setAccommodations] = useState([]);
+  const [filter, setFilter] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,11 @@ function AccommodationGuest() {
     fetchAccommodations();
   }, []);
 
+  const filteredAccommodations = accommodations.filter((accommodation) => {
+    return accommodation.name.toLowerCase().includes(filter.toLowerCase());
+  });
+  
+
   const handleSelectAccommodation = (accommodationId) => {
     navigate(`/guest/accommodation/${accommodationId}`);
   };
@@ -34,12 +40,30 @@ function AccommodationGuest() {
       backgroundColor: "#f0f0f0",
     }}
     >
+    <label htmlFor="filter" className="mb-2 text-white">Search by name: 
+    <input
+      type="text"
+      id="filter"
+      value={filter}
+      onChange={(e) => setFilter(e.target.value)}
+      className="mb-2 text-black"
+    />
+    </label>
+    <label htmlFor="filter" className="mb-2 text-white">Search by city: 
+    <input
+      type="text"
+      id="filter"
+      value={filter}
+      onChange={(e) => setFilter(e.target.value)}
+      className="mb-2 text-black"
+    />
+    </label>
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-bold text-white mb-6 text-center">
           All Accommodations
         </h1>
         <ul className="mb-8">
-          {accommodations.map((accommodation) => (
+          {filteredAccommodations.map((accommodation) => (
             <li
               key={accommodation._id}
               className="mb-2 text-white cursor-pointer"
