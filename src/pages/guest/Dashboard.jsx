@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { GuestContext } from "../../context/GuestContext";
-//falta importar Navbar
 import { useNavigate } from "react-router-dom";
 import {
   FaUser,

@@ -19,7 +19,7 @@ function AccommodationHost() {
       const goodUser = JSON.parse(user);
       try {
         const response = await fetch(
-          "http://localhost:5005/api/accommodation/host/" + goodUser._id,
+          `${import.meta.env.VITE_API_URL}/api/accommodation/host/` + goodUser._id,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -52,7 +52,7 @@ function AccommodationHost() {
 
     try {
       const response = await fetch(
-        `http://localhost:5005/api/accommodation/host/${goodUser._id}`,
+        `${import.meta.env.VITE_API_URL}/api/accommodation/host/${goodUser._id}`,
         {
           method: "POST",
           headers: {
