@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import  { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate para la navegación
 
 const AccommodationGuest = () => {
   const [accommodations, setAccommodations] = useState([]);

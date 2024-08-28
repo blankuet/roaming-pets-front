@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaClipboardList,
-  FaHeart,
   FaHome,
   FaSignOutAlt,
 } from "react-icons/fa";
@@ -46,26 +45,23 @@ function GuestDashboard() {
                 Your Bookings
               </button>
               <button
-                className="bg-pink-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-pink-600 transition"
-                onClick={() => navigate("/favourites")}
-              >
-                <FaHeart className="text-4xl mb-3" />
-                Your Favourites
-              </button>
-              <button
                 className="bg-yellow-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-yellow-600 transition"
                 onClick={() => { logout(); navigate("/host") }}
               >
                 <FaHome className="text-4xl mb-3" />
                 Want to be a Host?
               </button>
-              <button
-                className="bg-red-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-red-600 transition"
-                onClick={logout}
-              >
-                <FaSignOutAlt className="text-4xl mb-3" />
-                Log Out
-              </button>
+              {/* Empty placeholder for centering purposes */}
+  <div className="hidden md:block"></div>
+
+              {/* Centered Log Out button */}
+  <button
+    className="bg-red-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-red-600 transition md:col-span-3 lg:col-span-1"
+    onClick={logout}
+  >
+    <FaSignOutAlt className="text-4xl mb-3" />
+    Log Out
+  </button>
             </div>
           </div>
         </>
