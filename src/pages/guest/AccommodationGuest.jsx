@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Importar useNavigate para la navegación
+import { useNavigate } from "react-router-dom";
 
 const AccommodationGuest = () => {
   const [accommodations, setAccommodations] = useState([]);
@@ -11,7 +11,7 @@ const AccommodationGuest = () => {
     city: "",
   });
 
-  const navigate = useNavigate(); // Hook para la navegación
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAccommodations = async () => {
@@ -26,7 +26,7 @@ const AccommodationGuest = () => {
         );
         const data = await response.json();
         setAccommodations(data);
-        setFilteredAccommodations(data); // Inicialmente mostrar todas las acomodaciones
+        setFilteredAccommodations(data); // Show all accommodations initially
       } catch (error) {
         console.error("Error fetching accommodations:", error);
       }
@@ -35,7 +35,7 @@ const AccommodationGuest = () => {
     fetchAccommodations();
   }, []);
 
-  // Maneja el cambio en los filtros
+  // Change Filters
   const handleFilterChange = (event) => {
     const { name, value } = event.target;
     setFilters((prevState) => ({
@@ -44,14 +44,14 @@ const AccommodationGuest = () => {
     }));
   };
 
-  // Filtra las acomodaciones basado en los filtros aplicados
+  // Filter Accommodations
   useEffect(() => {
     const filtered = accommodations.filter((acc) => {
       return (
         (filters.name === "" ||
           acc.name.toLowerCase().includes(filters.name.toLowerCase())) &&
         (filters.maxPersons === "" ||
-          acc.maxPersons === Number(filters.maxPersons)) &&
+          acc.maxPersons >= Number(filters.maxPersons)) && // Aquí cambiamos la lógica
         (filters.city === "" ||
           acc.city.toLowerCase().includes(filters.city.toLowerCase()))
       );
@@ -98,7 +98,7 @@ const AccommodationGuest = () => {
           <input
             type="number"
             name="maxPersons"
-            placeholder="Max Persons"
+            placeholder="Max Persons & Pets"
             value={filters.maxPersons}
             onChange={handleFilterChange}
             className="px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
