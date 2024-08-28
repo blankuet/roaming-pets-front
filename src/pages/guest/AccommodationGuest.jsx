@@ -98,7 +98,7 @@ const AccommodationGuest = () => {
           <input
             type="number"
             name="maxPersons"
-            placeholder="Max Persons"
+            placeholder="Max Persons & Pets"
             value={filters.maxPersons}
             onChange={handleFilterChange}
             className="px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
