@@ -11,6 +11,7 @@ function AccommodationHost() {
     city: "",
     description: "",
   });
+  const [successMessage, setSuccessMessage] = useState(""); // Estado para el mensaje de confirmación
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,7 +20,8 @@ function AccommodationHost() {
       const goodUser = JSON.parse(user);
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/accommodation/host/` + goodUser._id,
+          `${import.meta.env.VITE_API_URL}/api/accommodation/host/` +
+            goodUser._id,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -52,7 +54,9 @@ function AccommodationHost() {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/accommodation/host/${goodUser._id}`,
+        `${import.meta.env.VITE_API_URL}/api/accommodation/host/${
+          goodUser._id
+        }`,
         {
           method: "POST",
           headers: {
@@ -70,7 +74,26 @@ function AccommodationHost() {
       const data = await response.json();
       console.log("Accommodation created:", data);
 
+      // Añadir la nueva acomodación a la lista
       setAccommodations([...accommodations, data.accommodation]);
+
+      // Mostrar mensaje de éxito
+      setSuccessMessage("You created an accommodation successfully!");
+
+      // Limpiar el formulario
+      setFormValues({
+        name: "",
+        address: "",
+        price: "",
+        maxPersons: "",
+        city: "",
+        description: "",
+      });
+
+      // Ocultar el mensaje después de 3 segundos
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
     } catch (error) {
       console.error(error);
     }
@@ -106,6 +129,14 @@ function AccommodationHost() {
             </li>
           ))}
         </ul>
+
+        {/* Mostrar mensaje de éxito */}
+        {successMessage && (
+          <div className="mb-6 p-4 text-center text-white bg-green-600 rounded-lg">
+            {successMessage}
+          </div>
+        )}
+
         <form
           onSubmit={handleSubmit}
           className="bg-black bg-opacity-75 p-6 rounded-lg shadow-md w-full"
