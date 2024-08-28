@@ -122,10 +122,10 @@ const GuestProvider = ({ children }) => {
       setAuth((prevAuth) => ({ ...prevAuth, user: data.user }));
       localStorage.setItem("user", JSON.stringify(data.user));
       setError(null); // Limpiar errores en caso de éxito
-      return {status: 200, user: data.user};
+      return { status: 200, user: data.user };
     } catch (error) {
       console.error("Error updating user:", error);
-      return {status: 500, error: error.message};
+      return { status: 500, error: error.message };
     }
   };
 

@@ -129,6 +129,7 @@ const ImageForm = ({ setImage, userType }) => {
 
 ImageForm.propTypes = {
   setImage: PropTypes.func.isRequired,
+  userType: PropTypes.string.isRequired,
 };
 
 export default ImageForm;

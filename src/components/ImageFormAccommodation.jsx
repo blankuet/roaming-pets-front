@@ -43,7 +43,7 @@ const ImageFormAccommodation = ({ accommodationId, onSave }) => {
   const handleSaveImages = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5005/api/accommodation/${accommodationId}/images`,
+        `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}/images`,
         {
           method: "PUT",
           headers: {
