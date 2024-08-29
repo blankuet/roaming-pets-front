@@ -58,7 +58,7 @@ function Bookings() {
                 <h2 className="text-2xl font-bold mb-2">
                   <Link
                     to={`/guest/accommodation/${booking.accommodation?._id}`}
-                    className="text-blue-400 hover:underline"
+                    className="text-blue-400 hover:text-blue-800"
                   >
                     {booking.accommodation?.name || "Unknown Accommodation"}
                   </Link>
