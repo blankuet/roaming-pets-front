@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
-import HomeIcon from "/public/Home.jpg";
+import HomeIcon from "/Home.jpg";
 import { useNavigate } from "react-router-dom";
 
 function HostNavbar() {
