@@ -163,7 +163,7 @@ function AccommodationDetailsGuest() {
               <strong className="text-lime-200">Name:</strong>
               <Link
                 to={`/host/${accommodation.hostId._id}`} // Enlace dinámico con ID del host
-                className="text-white hover:text-gray-600 transition duration-300"
+                className="text-blue-400 hover:text-blue-800"
               >
                 {accommodation.hostId.name}
               </Link>

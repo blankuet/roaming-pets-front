@@ -50,7 +50,7 @@ function BookingHost() {
                 <strong>Guest Name:</strong>{" "}
                 <Link
                   to={`/guest/${booking.guestId._id}`}
-                  className="text-white hover:text-gray-600"
+                  className="text-blue-400 hover:text-blue-800"
                 >
                   {booking.guestId.name}
                 </Link>

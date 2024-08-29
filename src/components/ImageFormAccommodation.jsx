@@ -78,7 +78,7 @@ const ImageFormAccommodation = ({ accommodationId, onSave }) => {
       />
       <label
         htmlFor="fileInput"
-        className="mb-4 bg-purple-500 hover:bg-purple-600 text-lime-200 py-2 px-4 rounded cursor-pointer flex"
+        className="mb-4 bg-purple-500 hover:bg-purple-600 text-lime-200 py-2 px-4 rounded cursor-pointer flex justify-center items-center"
       >
         Select File
       </label>
