@@ -43,7 +43,9 @@ const ImageFormAccommodation = ({ accommodationId, onSave }) => {
   const handleSaveImages = async () => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}/images`,
+        `${
+          import.meta.env.VITE_API_URL
+        }/api/accommodation/${accommodationId}/images`,
         {
           method: "PUT",
           headers: {
@@ -69,16 +71,21 @@ const ImageFormAccommodation = ({ accommodationId, onSave }) => {
     <div className="relative">
       <input
         type="file"
+        id="fileInput"
         name="file"
-        multiple
-        placeholder="Upload images"
         onChange={uploadImage}
-        className="mb-4"
+        className="hidden"
       />
+      <label
+        htmlFor="fileInput"
+        className="mb-4 bg-purple-500 hover:bg-purple-600 text-lime-200 py-2 px-4 rounded cursor-pointer flex"
+      >
+        Select File
+      </label>
 
       {loading && <h3>Loading...</h3>}
 
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-2 mt-5">
         {images.map((image, index) => (
           <img
             key={index}

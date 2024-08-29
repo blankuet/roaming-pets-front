@@ -1,12 +1,7 @@
 import { useContext } from "react";
 import { GuestContext } from "../../context/GuestContext";
 import { useNavigate } from "react-router-dom";
-import {
-  FaUser,
-  FaClipboardList,
-  FaHome,
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { FaUser, FaClipboardList, FaHome, FaSignOutAlt } from "react-icons/fa";
 
 function GuestDashboard() {
   const { auth, logout } = useContext(GuestContext);
@@ -17,8 +12,14 @@ function GuestDashboard() {
       {auth.user ? (
         <>
           <div
-            className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center"
-            style={{ backgroundImage: "url('/public/animals.jpg')" }}
+            className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/animals.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundColor: "#F0F0F0",
+            }}
           >
             {/* Centered Text Container */}
             <div className="text-center my-8">
@@ -46,22 +47,28 @@ function GuestDashboard() {
               </button>
               <button
                 className="bg-yellow-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-yellow-600 transition"
-                onClick={() => { logout(); navigate("/host") }}
+                onClick={() => {
+                  logout();
+                  navigate("/host");
+                }}
               >
                 <FaHome className="text-4xl mb-3" />
                 Want to be a Host?
               </button>
               {/* Empty placeholder for centering purposes */}
-  <div className="hidden md:block"></div>
+              <div className="hidden md:block"></div>
 
               {/* Centered Log Out button */}
-  <button
-    className="bg-red-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-red-600 transition md:col-span-3 lg:col-span-1"
-    onClick={logout}
-  >
-    <FaSignOutAlt className="text-4xl mb-3" />
-    Log Out
-  </button>
+              <button
+                className="bg-red-500 text-white p-6 rounded-lg shadow-lg flex flex-col items-center justify-center hover:bg-red-600 transition md:col-span-3 lg:col-span-1"
+                onClick={() => {
+                  logout();
+                  navigate("/");
+                }}
+              >
+                <FaSignOutAlt className="text-4xl mb-3" />
+                Log Out
+              </button>
             </div>
           </div>
         </>

@@ -49,17 +49,20 @@ function AccommodationDetailsGuest() {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/booking`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...bookingDetails,
-          accommodationId,
-          guestId: user._id,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/booking`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...bookingDetails,
+            accommodationId,
+            guestId: user._id,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to create booking");
@@ -69,10 +72,13 @@ function AccommodationDetailsGuest() {
       console.log("Booking created:", data);
 
       // Almacenar los detalles de la reserva en localStorage
-      localStorage.setItem("bookingDetails", JSON.stringify({
-        ...bookingDetails,
-        accommodation: { _id: accommodationId, ...accommodation },
-      }));
+      localStorage.setItem(
+        "bookingDetails",
+        JSON.stringify({
+          ...bookingDetails,
+          accommodation: { _id: accommodationId, ...accommodation },
+        })
+      );
 
       navigate("/guest/bookings");
     } catch (error) {
@@ -83,7 +89,9 @@ function AccommodationDetailsGuest() {
   const handleReviewSubmit = async (newReview) => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}/reviews`,
+        `${
+          import.meta.env.VITE_API_URL
+        }/api/accommodation/${accommodationId}/reviews`,
         {
           method: "POST",
           headers: {
@@ -112,14 +120,14 @@ function AccommodationDetailsGuest() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
-    style={{
-      backgroundImage: "url('/public/animals.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      backgroundColor: "#f0f0f0",
-    }}
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/animals.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#F0F0F0",
+      }}
     >
       <div className="w-full max-w-2xl p-6 bg-black bg-opacity-75 rounded-lg shadow-md text-white">
         <h1 className="text-3xl font-bold mb-4">{accommodation.name}</h1>
@@ -152,10 +160,10 @@ function AccommodationDetailsGuest() {
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-lime-200">Host</h3>
             <p>
-              <strong>Name:</strong> 
+              <strong className="text-lime-200">Name:</strong>
               <Link
                 to={`/host/${accommodation.hostId._id}`} // Enlace dinámico con ID del host
-                className="text-indigo-400 hover:text-indigo-600 transition duration-300"
+                className="text-white hover:text-gray-600 transition duration-300"
               >
                 {accommodation.hostId.name}
               </Link>
@@ -174,10 +182,7 @@ function AccommodationDetailsGuest() {
           <h3 className="text-lg font-semibold text-lime-200">Reviews</h3>
           {reviews.length > 0 ? (
             reviews.map((review, index) => (
-              <div
-                key={index}
-                className="bg-gray-800 p-4 rounded-lg shadow-md"
-              >
+              <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
                 <Rating rating={review.rating || 0} />
                 {review.review ? (
                   <p className="mt-2 text-gray-300">{review.review}</p>

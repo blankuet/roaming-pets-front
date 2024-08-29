@@ -64,13 +64,13 @@ function EditProfile() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/public/animals.jpg')",
+        backgroundImage: "url('/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#F0F0F0",
       }}
     >
       <h1 className="text-4xl font-bold text-white text-center mb-6">

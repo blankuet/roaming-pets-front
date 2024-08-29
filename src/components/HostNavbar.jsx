@@ -2,9 +2,11 @@ import { NavLink } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
 import HomeIcon from "/public/Home.jpg";
+import { useNavigate } from "react-router-dom";
 
 function HostNavbar() {
   const { auth, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("Auth state changed:", auth);
@@ -68,7 +70,10 @@ function HostNavbar() {
           </>
         ) : (
           <button
-            onClick={logout}
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
             className="text-lg text-slate-200 hover:text-indigo-600"
           >
             Logout

@@ -9,11 +9,14 @@ function BookingHost() {
       const user = localStorage.getItem("user");
       const userInJSON = JSON.parse(user);
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/booking/host/${userInJSON._id}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/booking/host/${userInJSON._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         const data = await response.json();
         setBookings(data);
       } catch (error) {
@@ -26,13 +29,13 @@ function BookingHost() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/public/animals.jpg')",
+        backgroundImage: "url('/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#F0F0F0",
       }}
     >
       <div className="w-full max-w-4xl p-6 bg-black bg-opacity-75 rounded-lg shadow-md text-white">
@@ -47,7 +50,7 @@ function BookingHost() {
                 <strong>Guest Name:</strong>{" "}
                 <Link
                   to={`/guest/${booking.guestId._id}`}
-                  className="text-blue-400 hover:underline"
+                  className="text-white hover:text-gray-600"
                 >
                   {booking.guestId.name}
                 </Link>

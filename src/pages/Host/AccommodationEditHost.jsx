@@ -18,7 +18,9 @@ const AccommodationEditHost = () => {
     const fetchAccommodationDetails = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}`,
+          `${
+            import.meta.env.VITE_API_URL
+          }/api/accommodation/${accommodationId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -124,13 +126,13 @@ const AccommodationEditHost = () => {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/public/animals.jpg')",
+        backgroundImage: "url('/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#F0F0F0",
       }}
     >
       <div className="w-full max-w-md">
@@ -239,11 +241,20 @@ const AccommodationEditHost = () => {
                   alt={`Accommodation ${index + 1}`}
                   className="w-20 h-20 rounded-lg mr-4"
                 />
+
                 <input
                   type="file"
+                  id="fileInput"
+                  name="file"
                   onChange={(e) => handleImageChange(e, index)}
-                  className="w-full px-4 py-2 border border-gray-600 bg-gray-800 text-gray-300 rounded-lg"
+                  className="hidden"
                 />
+                <label
+                  htmlFor="fileInput"
+                  className="mb-4 bg-purple-500 hover:bg-purple-600 text-lime-200 py-2 px-4 rounded cursor-pointer flex"
+                >
+                  Select File
+                </label>
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(index)}

@@ -12,7 +12,9 @@ function AccommodationDetailsHost() {
     const fetchAccommodationDetails = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/accommodation/${accommodationId}`,
+          `${
+            import.meta.env.VITE_API_URL
+          }/api/accommodation/${accommodationId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -63,7 +65,7 @@ function AccommodationDetailsHost() {
       images: newImages,
     }));
     setShowImageForm(false);
-    location.reload()
+    location.reload();
   };
 
   if (!accommodation) {
@@ -72,13 +74,13 @@ function AccommodationDetailsHost() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/public/animals.jpg')",
+        backgroundImage: "url('/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        backgroundColor: "#f0f0f0",
+        backgroundColor: "#F0F0F0",
       }}
     >
       <div className="w-full max-w-md bg-black bg-opacity-75 p-6 rounded-lg shadow-md">
