@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import HomeIcon from "/public/Home.jpg";
+import HomeIcon from "/Home.jpg";
 import { useContext, useEffect } from "react";
 import { GuestContext } from "../context/GuestContext.jsx";
 import { useNavigate } from "react-router-dom";

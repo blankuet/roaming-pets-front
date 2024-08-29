@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Importar useNavigate para la navegación
 
 const AccommodationGuest = () => {
@@ -69,7 +69,7 @@ const AccommodationGuest = () => {
     <div
       className="min-h-screen bg-gray-900 p-8"
       style={{
-        backgroundImage: "url('/public/animals.jpg')",
+        backgroundImage: "url('/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
