@@ -27,7 +27,7 @@ function Home() {
             </p>
             <NavLink to="/host/signup" className="flex flex-col items-center">
               <img
-                src="/src/signup.png"
+                src="/signup.png"
                 alt="signup"
                 className="w-24 h-24 rounded-full object-cover mb-4"
               />
@@ -41,7 +41,7 @@ function Home() {
             </p>
             <NavLink to="/host/login" className="flex flex-col items-center">
               <img
-                src="/src/login.png"
+                src="/login.png"
                 alt="login"
                 className="w-24 h-24 rounded-full object-cover mb-4"
               />
@@ -55,7 +55,7 @@ function Home() {
             </p>
             <NavLink to="/" className="flex flex-col items-center">
               <img
-                src="/src/guest.png"
+                src="/guest.png"
                 alt="guest"
                 className="w-24 h-24 rounded-full object-cover mb-4"
               />
