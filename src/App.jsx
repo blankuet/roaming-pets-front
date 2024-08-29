@@ -26,7 +26,7 @@ import GuestEditProfile from "./pages/guest/EditProfile.jsx";
 import PublicHostProfile from "./pages/Host/PublicHostProfile.jsx";
 import PublicGuestProfile from "./pages/guest/PublicGuestProfile.jsx";
 import GuestPrivateRoute from "./components/GuestPrivateRoute.jsx";
-import Booking from "./pages/Booking.jsx";
+import Booking from "./pages/guest/Booking.jsx";
 
 function App() {
   return (

@@ -4,8 +4,14 @@ function Home() {
   return (
     <>
       <div
-        className="relative min-h-screen bg-cover bg-center flex flex-col items-center justify-center"
-        style={{ backgroundImage: "url('/public/animals.jpg')" }}
+        className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/animals.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#F0F0F0",
+        }}
       >
         {/* Contenedor para el título */}
         <h1 className="text-4xl font-bold text-white mb-12">

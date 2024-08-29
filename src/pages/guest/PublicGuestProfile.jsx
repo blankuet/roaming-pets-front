@@ -12,7 +12,9 @@ function PublicGuestProfile() {
     //Obtener los datos del host y sus reviews desde el backend
     const fetchHostData = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/${guestId}`);
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/auth/${guestId}`
+        );
         const data = await response.json();
         setHost(data);
         setReviews(data.reviews || []);
@@ -27,13 +29,16 @@ function PublicGuestProfile() {
   const handleReviewSubmit = async (newReview) => {
     try {
       //Enviar la review al backend
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/${guestId}/reviews`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newReview),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/auth/${guestId}/reviews`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newReview),
+        }
+      );
       const savedReview = await response.json();
       setReviews([...reviews, savedReview]);
     } catch (error) {
@@ -42,20 +47,28 @@ function PublicGuestProfile() {
   };
 
   const totalReviews = reviews.length;
-  const averageRating = totalReviews > 0 ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) / totalReviews : 0;
+  const averageRating =
+    totalReviews > 0
+      ? reviews.reduce((sum, review) => sum + (review.rating || 0), 0) /
+        totalReviews
+      : 0;
 
   return (
-     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center"
+    <div
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/public/animals.jpg')",
+        backgroundImage: "url('/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundColor: "#F0F0F0",
       }}
     >
       {guest ? (
         <div className="flex flex-col items-center w-full max-w-lg">
-          <h1 className="text-5xl font-bold text-lime-200 text-center mb-6">{guest.name} {guest.lastname}</h1>
+          <h1 className="text-5xl font-bold text-white text-center mb-6 drop-shadow-lg">
+            {guest.name} {guest.lastname}
+          </h1>
           <div className="bg-black bg-opacity-80 rounded-lg shadow-lg p-6 w-full">
             <div className="flex flex-col items-center mb-6">
               {guest.profileImage && (
@@ -65,9 +78,15 @@ function PublicGuestProfile() {
                   className="w-32 h-32 rounded-full object-cover mb-4 shadow-md"
                 />
               )}
-              <p className="text-xl font-semibold text-lime-200 mb-2">Name: {guest.name}</p>
-              <p className="text-xl font-semibold text-lime-200 mb-2">Last Name: {guest.lastname}</p>
-              <p className="text-xl font-semibold text-lime-200 mb-2">Email: {guest.email}</p>
+              <p className="text-xl font-semibold text-lime-200 mb-2">
+                Name: {guest.name}
+              </p>
+              <p className="text-xl font-semibold text-lime-200 mb-2">
+                Last Name: {guest.lastname}
+              </p>
+              <p className="text-xl font-semibold text-lime-200 mb-2">
+                Email: {guest.email}
+              </p>
             </div>
 
             {/* Mostrar la cantidad de reseñas y la media de calificaciones */}
@@ -78,10 +97,15 @@ function PublicGuestProfile() {
 
             {/* Mostrar las reviews */}
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-lime-200 text-center">Reviews</h3>
+              <h3 className="text-lg font-semibold text-lime-200 text-center">
+                Reviews
+              </h3>
               {reviews.length > 0 ? (
                 reviews.map((review, index) => (
-                  <div key={index} className="bg-gray-800 p-4 rounded-lg shadow-md">
+                  <div
+                    key={index}
+                    className="bg-gray-800 p-4 rounded-lg shadow-md"
+                  >
                     <Rating rating={review.rating || 0} />
                     {/* Mostrar el comentario de la review */}
                     {review.review ? (
