@@ -17,7 +17,7 @@ const AccommodationGuest = () => {
     const fetchAccommodations = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5005/api/accommodation",
+          `${import.meta.env.VITE_API_URL}/api/accommodation`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
