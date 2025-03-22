@@ -18,8 +18,14 @@ function GuestDashboard() {
       {auth.user ? (
         <>
           <div
-            className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center"
-            style={{ backgroundImage: "url('/public/animals.jpg')" }}
+            className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: "url('/animals.jpg')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundColor: "#f0f0f0",
+            }}
           >
             {/* Centered Text Container */}
             <div className="text-center my-8">

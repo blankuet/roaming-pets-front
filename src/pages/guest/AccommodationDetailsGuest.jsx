@@ -112,9 +112,9 @@ function AccommodationDetailsGuest() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
     style={{
-      backgroundImage: "url('/public/animals.jpg')",
+      backgroundImage: "url('/animals.jpg')",
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
@@ -152,10 +152,10 @@ function AccommodationDetailsGuest() {
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-lime-200">Host</h3>
             <p>
-              <strong>Name:</strong> 
+              <strong className="text-lime-200">Name:</strong> 
               <Link
                 to={`/host/${accommodation.hostId._id}`} // Enlace dinámico con ID del host
-                className="text-indigo-400 hover:text-indigo-600 transition duration-300"
+                className="text-white hover:text-light-600 transition duration-300"
               >
                 {accommodation.hostId.name}
               </Link>

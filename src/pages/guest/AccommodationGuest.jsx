@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AccommodationGuest = () => {
@@ -17,7 +17,7 @@ const AccommodationGuest = () => {
     const fetchAccommodations = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5005/api/accommodation",
+          `${import.meta.env.VITE_API_URL}/api/accommodation`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -69,7 +69,7 @@ const AccommodationGuest = () => {
     <div
       className="min-h-screen bg-gray-900 p-8"
       style={{
-        backgroundImage: "url('/public/animals.jpg')",
+        backgroundImage: "url('/animals.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

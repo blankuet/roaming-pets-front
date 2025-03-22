@@ -72,7 +72,7 @@ function AccommodationDetailsHost() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/public/animals.jpg')",
         backgroundSize: "cover",

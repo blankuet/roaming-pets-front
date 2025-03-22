@@ -25,13 +25,11 @@ function Bookings() {
     fetchBookings();
   }, []);
 
-  if (bookings.length === 0) {
-    return <div className="text-white text-center">You have no bookings.</div>;
-  }
+
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/public/animals.jpg')",
         backgroundSize: "cover",
@@ -50,14 +48,14 @@ function Bookings() {
             const dateTo = new Date(booking.dateTo);
             const totalDays = (dateTo - dateFrom) / (1000 * 3600 * 24);
 
-            // Check if booking.accommodation exists and has a price
+            
             const price = booking.accommodation?.price ? Number(booking.accommodation.price) : 0;
             const totalPrice = totalDays > 0 ? price * totalDays : 0;
 
             return (
               <li key={booking._id} className="mb-4 p-4 bg-gray-800 rounded-lg">
                 <h2 className="text-2xl font-bold mb-2">
-                  <Link to={`/guest/accommodation/${booking.accommodation?._id}`} className="text-blue-400 hover:underline">
+                  <Link to={`/guest/accommodation/${booking.accommodation?._id}`} className="text-white hover:text-light-600">
                     {booking.accommodation?.name || "Unknown Accommodation"}
                   </Link>
                 </h2>

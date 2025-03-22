@@ -38,7 +38,7 @@ function GuestProfile() {
 
   return (
     <div
-      className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+      className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/public/animals.jpg')",
         backgroundSize: "cover",
@@ -49,7 +49,7 @@ function GuestProfile() {
     >
       {auth.user ? (
         <>
-          <h1 className="text-5xl font-bold text-white text-center mb-6 w-full drop-shadow-lg">
+          <h1 className="text-5xl font-bold text-lime-200 text-center mb-6 w-full drop-shadow-lg">
             Welcome, {auth.user.name}
           </h1>
 

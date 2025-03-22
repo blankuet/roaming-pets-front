@@ -16,8 +16,14 @@ function HostDashboard() {
   return (
     <>
       <div
-        className="flex flex-col justify-start items-center min-h-screen bg-cover bg-center p-6"
-        style={{ backgroundImage: "url('/animals.jpg')" }}
+        className="flex flex-col justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/public/animals.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: "#f0f0f0",
+        }}
       >
         {auth.user ? (
           <>
