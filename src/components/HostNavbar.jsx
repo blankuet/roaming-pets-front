@@ -12,16 +12,11 @@ function HostNavbar() {
 
   return (
     <nav className="bg-black shadow-md py-4 px-6 flex items-center justify-between">
-      {/* Icono de Home */}
-      {!auth.user ? (
-        <NavLink to="/host/" className="flex items-center">
-          <img src={HomeIcon} alt="Home" className="h-10" />
-        </NavLink>
-      ) : (
-        <NavLink to="/host/dashboard" className="flex items-center">
-          <img src={HomeIcon} alt="Home" className="h-10" />
-        </NavLink>
-      )}
+      {/* Icono de Home con etiqueta "Host" */}
+      <NavLink to={auth.user ? "/host/dashboard" : "/host/"} className="flex items-center">
+        <img src={HomeIcon} alt="Home" className="h-10" />
+        <span className="text-white ml-2">Host</span>
+      </NavLink>
 
       {/* Enlaces centrados para usuarios autenticados */}
       {auth.user && (

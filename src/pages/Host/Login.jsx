@@ -22,7 +22,7 @@ function Login() {
     <div
       className="flex justify-center items-center min-h-screen bg-cover bg-center bg-no-repeat"
     style={{
-      backgroundImage: "url('/public/animals.jpg')",
+      backgroundImage: "url('/animals.jpg')",
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
